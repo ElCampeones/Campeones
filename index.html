@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Campeones Football Club</title>
   <style>
     body {
@@ -12,26 +12,37 @@
       background: #f9f9f9;
       color: #333;
     }
-    
     header {
       background-color: #800020;
       color: white;
       padding: 1.5rem;
       text-align: center;
     }
-    
+    .logo-container {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .logo-container img {
+      width: 260px;
+      max-width: 90%;
+      height: auto;
+    }
     section {
       padding: 2rem;
       text-align: center;
     }
-    
     .hero {
       background: url('https://images.unsplash.com/photo-1601961471669-24d2a47f0db6?auto=format&fit=crop&w=1400&q=80') no-repeat center center;
       background-size: cover;
-      color: white;
+      color: #fff;
       padding: 6rem 2rem;
     }
-    
+    .hero h2, .hero p {
+      background-color: rgba(0,0,0,0.5);
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+    }
     footer {
       background-color: #222;
       color: #aaa;
@@ -39,7 +50,6 @@
       padding: 1rem;
       font-size: 0.9rem;
     }
-    
     a {
       color: #f7c200;
       text-decoration: none;
@@ -47,32 +57,40 @@
   </style>
 </head>
 <body>
-  <div style="text-align: center; margin-top: 30px;">
-    <img src="logo.png" alt="Campeones Logo" style="width: 160px;">
+
+  <div class="logo-container">
+    <img src="logo.png" alt="Campeones Logo" />
   </div>
+
   <header>
     <h1>Campeones Football Club</h1>
     <p>Developing youth through football in Dubai</p>
   </header>
+
   <section class="hero">
     <h2>Train. Grow. Shine.</h2>
     <p>Join one of the most dynamic youth football academies in the UAE.</p>
   </section>
+
   <section>
     <h2>About Us</h2>
-    <p>Campeones FC is dedicated to training boys and girls ages 5–17 with passion, discipline, and fun!</p>
+    <p>Campeones FC is dedicated to training boys aged 5–17 with passion, discipline, and fun!</p>
   </section>
+
   <section>
     <h2>Programs</h2>
     <p>We offer year-round training, tournaments, and personalized coaching.</p>
   </section>
+
   <section>
     <h2>Contact Us</h2>
     <p>Email: info@campeones.ae</p>
     <p>Location: Mirdif, Dubai</p>
   </section>
+
   <footer>
-    <p> 2025 Campeones Football Club. All rights reserved.</p>
+    <p>© 2025 Campeones Football Club. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
