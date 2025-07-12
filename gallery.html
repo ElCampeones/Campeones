@@ -35,6 +35,14 @@
       object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .gallery img.error {
+      border: 2px dashed #ff0000;
+      background-color: #ffecec;
     }
     footer {
       background-color: #222;
@@ -42,30 +50,67 @@
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
+      margin-top: 2rem;
     }
     a {
       color: #f7c200;
       text-decoration: none;
+      font-weight: bold;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #800020;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Campeones Gallery</h1>
-    <p><a href="index.html" style="color: #f7c200;">Back to Home</a></p>
+    <p><a href="index.html">Back to Home</a></p>
   </header>
 
   <h2>Training Highlights</h2>
+  
   <div class="gallery">
-    <img src="IMG-20250525-WA0127.jpg" alt="Training 1" />
-    <img src="IMG-20250525-WA0128.jpg" alt="Training 2" />
-    <img src="IMG-20250525-WA0129.jpg" alt="Training 3" />
-    <img src="IMG-20250525-WA0130.jpg" alt="Training 4" />
-    <img src="IMG-20250525-WA0131.jpg" alt="Training 5" />
+    <!-- الصور الأساسية -->
+    <img src="IMG-20250525-WA0127.jpg" alt="Training Session 1" onerror="handleImageError(this)">
+    <img src="IMG-20250525-WA0128.jpg" alt="Training Session 2" onerror="handleImageError(this)">
+    <img src="IMG-20250525-WA0129.jpg" alt="Training Session 3" onerror="handleImageError(this)">
+    <img src="IMG-20250525-WA0132.jpg" alt="Training Session 4" onerror="handleImageError(this)">
+    <img src="IMG-20250525-WA0141.jpg" alt="Training Session 5" onerror="handleImageError(this)">
+    <img src="IMG-20250601-WA0073.jpg" alt="Training Session 6" onerror="handleImageError(this)">
+    <img src="IMG-20250604-WA0025.jpg" alt="Training Session 7" onerror="handleImageError(this)">
   </div>
 
   <footer>
-    <p>© 2025 Campeones Football Training</p>
+    <p>© 2025 Campeones Football Training | All Rights Reserved</p>
   </footer>
+
+  <script>
+    // دالة للتعامل مع أخطاء تحميل الصور
+    function handleImageError(img) {
+      img.classList.add('error');
+      img.alt = 'Failed to load image: ' + img.alt;
+      console.error('Image failed to load:', img.src);
+      
+      // يمكنك إضافة صورة بديلة هنا إذا أردت
+      // img.src = 'placeholder.jpg';
+    }
+
+    // إظهار رسالة تحميل أثناء انتظار الصور
+    document.addEventListener('DOMContentLoaded', function() {
+      const gallery = document.querySelector('.gallery');
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'loading';
+      loadingDiv.textContent = 'Loading images...';
+      gallery.appendChild(loadingDiv);
+      
+      // إخفاء رسالة التحميل بعد تحميل الصور
+      window.addEventListener('load', function() {
+        loadingDiv.style.display = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
