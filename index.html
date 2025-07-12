@@ -16,13 +16,16 @@
     header {
       background-color: #800020;
       color: white;
-      padding: 1rem 1.5rem;
+      padding: 2rem;
       text-align: center;
     }
 
     header img {
       width: 120px;
-      margin-top: 10px;
+      background: white;
+      border-radius: 8px;
+      padding: 6px;
+      margin-bottom: 1rem;
     }
 
     .hero {
@@ -33,47 +36,21 @@
     }
 
     .hero h2 {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #800020;
       margin-bottom: 0.5rem;
     }
 
     .hero p {
       font-size: 1.1rem;
+      font-weight: 400;
+      color: #800020;
     }
 
     section {
       padding: 2rem;
       text-align: center;
-    }
-
-    table {
-      margin: 1rem auto;
-      border-collapse: collapse;
-      width: 90%;
-      max-width: 600px;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.8rem;
-    }
-
-    th {
-      background-color: #800020;
-      color: white;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     footer {
@@ -88,6 +65,41 @@
       color: #f7c200;
       text-decoration: none;
     }
+
+    /* Gallery section */
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      margin: 1rem auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #800020;
+      text-align: center;
+    }
+
+    th {
+      background-color: #800020;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -99,38 +111,30 @@
   </header>
 
   <section class="hero">
-    <h2>Train the way you want to perform – with purpose and intent.</h2>
+    <h2>Train the way you want to perform — with purpose and intent.</h2>
     <p>We rise thinkers. We shape decision-makers.</p>
   </section>
 
-  <section id="programs">
-    <h2>Our Programs</h2>
-    <p>Structured evening training twice a week for boys aged 5–17:</p>
+  <section>
+    <h2>About Us</h2>
+    <p>Campeones FT is dedicated to training boys ages 5–17 with passion, discipline, and joy.</p>
+  </section>
 
+  <section>
+    <h2>Programs</h2>
+    <p>We offer year-round training, tournaments, and personalized coaching.</p>
     <table>
       <tr>
-        <th>Age Group</th>
-        <th>Days</th>
+        <th>Day</th>
         <th>Time</th>
-        <th>Level</th>
       </tr>
       <tr>
-        <td>5–8</td>
-        <td>Tue & Thu</td>
-        <td>6:30 – 8:00 PM</td>
-        <td>Beginner</td>
+        <td>Tuesday</td>
+        <td>6:30 PM – 8:00 PM</td>
       </tr>
       <tr>
-        <td>9–12</td>
-        <td>Tue & Thu</td>
-        <td>6:30 – 8:00 PM</td>
-        <td>Intermediate</td>
-      </tr>
-      <tr>
-        <td>13–17</td>
-        <td>Tue & Thu</td>
-        <td>6:30 – 8:00 PM</td>
-        <td>Advanced</td>
+        <td>Thursday</td>
+        <td>6:30 PM – 8:00 PM</td>
       </tr>
     </table>
   </section>
@@ -138,9 +142,9 @@
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1606788075761-57994a9bfb1d?q=80&auto=format&fit=crop&w=600" alt="Football Training">
-      <img src="https://images.unsplash.com/photo-1579972829965-dc4ab6f1f264?q=80&auto=format&fit=crop&w=600" alt="Youth Team Practice">
-      <img src="https://images.unsplash.com/photo-1584467735871-b0f66f7a80bd?q=80&auto=format&fit=crop&w=600" alt="Coaching Session">
+      <img src="https://images.unsplash.com/photo-1606788075761-57994a9bfb1d?auto=format&fit=crop&w=600&q=80" alt="Football Training">
+      <img src="https://images.unsplash.com/photo-1579972829965-dc4ab6f1f264?auto=format&fit=crop&w=600&q=80" alt="Youth Team Practice">
+      <img src="https://images.unsplash.com/photo-1584467735871-b0f66f7a80bd?auto=format&fit=crop&w=600&q=80" alt="Coaching Session">
     </div>
   </section>
 
