@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,150 +11,214 @@
       padding: 0;
       background: #f9f9f9;
       color: #333;
-    }header {
-  background-color: #800020;
-  color: white;
-  padding: 2rem;
-  text-align: center;
-}
+    }
 
-header img {
-  width: 220px;
-  background: white;
-  border-radius: 8px;
-  padding: 6px;
-  margin-bottom: 1rem;
-}
+    header {
+      background-color: #800020;
+      color: white;
+      padding: 2rem 1rem 1rem 1rem;
+      position: relative;
+      text-align: center;
+    }
 
-.hero {
-  background: none;
-  color: #800020;
-  padding: 2.5rem 1rem;
-  text-align: center;
-}
+    header img {
+      width: 220px;
+      background: white;
+      border-radius: 8px;
+      padding: 6px;
+      margin-bottom: 1rem;
+    }
 
-.hero h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #800020;
-  margin-bottom: 0.5rem;
-}
+    /* Hamburger menu styles */
+    .menu-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
 
-.hero p {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #800020;
-}
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      height: 100%;
+      width: 250px;
+      background-color: #800020;
+      color: white;
+      padding: 2rem 1rem;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
 
-section {
-  padding: 2rem;
-  text-align: center;
-}
+    .sidebar a {
+      display: block;
+      margin: 1rem 0;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-footer {
-  background-color: #222;
-  color: #aaa;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-}
+    .sidebar.show {
+      right: 0;
+    }
 
-a {
-  color: #f7c200;
-  text-decoration: none;
-}
+    .hero {
+      background: none;
+      color: #800020;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
 
-table {
-  margin: 1rem auto;
-  border-collapse: collapse;
-  width: 80%;
-  max-width: 500px;
-}
+    .hero h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #800020;
+      margin-bottom: 0.5rem;
+    }
 
-th, td {
-  padding: 0.75rem;
-  border: 1px solid #800020;
-  text-align: center;
-}
+    .hero p {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #800020;
+    }
 
-th {
-  background-color: #800020;
-  color: white;
-}
+    section {
+      padding: 2rem;
+      text-align: center;
+    }
 
+    footer {
+      background-color: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: #f7c200;
+      text-decoration: none;
+    }
+
+    table {
+      margin: 1rem auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #800020;
+      text-align: center;
+    }
+
+    th {
+      background-color: #800020;
+      color: white;
+    }
   </style>
 </head>
-<body>  <header>
+<body>
+
+  <header>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <img src="logo.png" alt="Campeones Logo">
     <h1>Campeones Football Training</h1>
     <p>Developing youth through football in Dubai</p>
-    <nav>
-      <a href="gallery.html" style="color: #f7c200; text-decoration: none; margin-top: 10px; display: inline-block;">View Our Gallery</a>
-    </nav>
-  </header>  <section class="hero">
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#findus">Find Us</a>
+    <a href="#contact">Contact</a>
+    <a href="#vision">Vision</a>
+    <a href="#expect">What to Expect</a>
+    <a href="#coming">Coming Soon</a>
+  </div>
+
+  <section class="hero">
     <h2>Train the way you want to perform — with purpose and intent.</h2>
     <p>We rise thinkers. We shape decision-makers.</p>
-  </section>  <section>
+  </section>
+
+  <section id="about">
     <h2>About Us</h2>
     <p>Campeones FT is dedicated to training boys ages 5–17 with passion, discipline, and joy.</p>
-  </section>  <section>
+  </section>
+
+  <section id="programs">
     <h2>Programs</h2>
     <p>We offer year-round training, tournaments, and personalized coaching.</p>
     <table>
-      <tr>
-        <th>Day</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <td>Tuesday</td>
-        <td>6:30 PM – 8:00 PM</td>
-      </tr>
-      <tr>
-        <td>Thursday</td>
-        <td>6:30 PM – 8:00 PM</td>
-      </tr>
+      <tr><th>Day</th><th>Time</th></tr>
+      <tr><td>Tuesday</td><td>6:30 PM – 8:00 PM</td></tr>
+      <tr><td>Thursday</td><td>6:30 PM – 8:00 PM</td></tr>
     </table>
-  </section>  <section id="gallery">
+  </section>
+
+  <section id="gallery">
     <h2>Gallery</h2>
     <p><a href="gallery.html">View full gallery</a></p>
-  </section>  <section>
+  </section>
+
+  <section id="findus">
     <h2>Find Us</h2>
     <p>Visit us at our training grounds in Mirdif, Dubai.</p>
     <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4365588121493!2d55.4209344!3d25.2232098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d5e797fc4d9%3A0xf85d9442ec3a2d58!2sGreen%20Zone%20Football%20Academy!5e0!3m2!1sen!2sae!4v1720868801234" 
+        src="https://www.google.com/maps/embed?pb=!1m18!..." 
         width="100%" 
         height="300" 
         style="border:0; border-radius: 10px;" 
         allowfullscreen="" 
-        loading="lazy">
-      </iframe>
+        loading="lazy"></iframe>
     </div>
-  </section>  <section>
+  </section>
+
+  <section id="contact">
     <h2>Contact Us</h2>
     <p>Email: info@campeones.ae</p>
     <p>Location: Mirdif, Dubai</p>
-  </section>  <section>
+  </section>
+
+  <section id="vision">
     <h2>Who We Are</h2>
-    <p>  Campeones is a youth football initiative grounded in discipline, awareness, and passion.
-    We believe football is more than a sport — it's a space where young players grow into thinkers, leaders, and decision-makers.
-    We teach with purpose, not patterns. We guide, but we don’t dictate. Our role is to awaken the player’s own intelligence. </p>
-  </section>  <section>
-    <h2>Our Vision</h2>
-    <p>To offer football training that goes beyond drills and matches — training that builds confidence, character, and commitment. We grow players, but more importantly, we grow people.</p>
-  </section>  <section>
+    <p>Campeones is a youth football initiative grounded in discipline, awareness, and passion...</p>
+  </section>
+
+  <section id="expect">
     <h2>What to Expect</h2>
     <ul style="list-style: none; padding: 0;">
       <li>✔️ Weekly training sessions (Tues & Thurs)</li>
       <li>✔️ Focus on discipline and fundamentals</li>
       <li>✔️ Friendly and respectful environment</li>
-      <li>✔️ We Train the mind, not just the legs — because a sharp mind beats tired feet every time</li>
-      <li>✔️ Coaching based on long-term player development</li>
+      <li>✔️ Training the mind, not just the legs</li>
     </ul>
-  </section>  <section>
+  </section>
+
+  <section id="coming">
     <h2>Coming Soon</h2>
-    <p>As we grow, we aim to offer internal tournaments, weekend matches, and enhanced coaching resources. We're working to secure partnerships that can support our players' development journey.</p>
-  </section>  <footer>
+    <p>Internal tournaments, weekend matches, and more are on the way!</p>
+  </section>
+
+  <footer>
     <p>© 2025 Campeones Football Training. All rights reserved.</p>
-  </footer></body>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('show');
+    }
+  </script>
+
+</body>
 </html>
