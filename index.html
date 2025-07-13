@@ -85,7 +85,7 @@
       color: white;
     }
 
-    /* Sidebar menu */
+    /* Sidebar */
     .menu-toggle {
       position: absolute;
       top: 1rem;
@@ -95,7 +95,7 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 1002;
     }
 
     .sidebar {
@@ -108,7 +108,11 @@
       color: white;
       padding: 2rem 1rem;
       transition: left 0.3s ease;
-      z-index: 1000;
+      z-index: 1003;
+    }
+
+    .sidebar.show {
+      left: 0;
     }
 
     .sidebar a {
@@ -119,15 +123,40 @@
       font-weight: bold;
     }
 
-    .sidebar.show {
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
       left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 1001;
+    }
+
+    .overlay.show {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar Menu -->
+  <!-- Overlay and Sidebar -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
   <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="toggleMenu()">❌</button>
     <a href="#about">About Us</a>
     <a href="#programs">Programs</a>
     <a href="gallery.html">Gallery</a>
@@ -204,7 +233,9 @@
   <script>
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
       sidebar.classList.toggle('show');
+      overlay.classList.toggle('show');
     }
   </script>
 
