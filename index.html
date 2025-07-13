@@ -109,10 +109,12 @@
       padding: 2rem 1rem;
       transition: left 0.3s ease;
       z-index: 1003;
+      visibility: hidden; /* إضافة هذه السطر */
     }
 
     .sidebar.show {
       left: 0;
+      visibility: visible; /* إضافة هذه السطر */
     }
 
     .sidebar a {
@@ -235,20 +237,19 @@
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('overlay');
       
-      // إخفاء أو إظهار القائمة الجانبية
       sidebar.classList.toggle('show');
-      
-      // إخفاء أو إظهار طبقة التعتيم
       overlay.classList.toggle('show');
       
-      // منع تمرير الصفحة عند فتح القائمة
-      document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : '';
+      // إيقاف تمرير الصفحة عند فتح القائمة
+      if (sidebar.classList.contains('show')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
-    
-    // إغلاق القائمة عند النقر خارجها (على الـ overlay)
-    document.getElementById('overlay').addEventListener('click', function() {
-      toggleMenu();
-    });
+
+    // إغلاق القائمة عند النقر على الـ overlay
+    document.getElementById('overlay').addEventListener('click', toggleMenu);
   </script>
 
 </body>
