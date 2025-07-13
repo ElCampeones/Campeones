@@ -49,7 +49,6 @@
       animation: fadeIn 1s ease-in 1s forwards;
     }
 
-    /* Main Content */
     #main-content {
       display: none;
     }
@@ -65,7 +64,6 @@
       100% { transform: scale(1); }
     }
 
-    /* بقية أنماط الموقع... */
     header {
       background-color: #800020;
       color: white;
@@ -133,7 +131,6 @@
       color: white;
     }
 
-    /* Sidebar */
     .menu-toggle {
       position: absolute;
       top: 1rem;
@@ -210,7 +207,6 @@
 
   <!-- Main Content -->
   <div id="main-content">
-    <!-- Overlay and Sidebar -->
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
       <button class="close-btn" onclick="toggleMenu()">✕</button>
@@ -267,7 +263,7 @@
       <p>Visit us at our training grounds in Mirdif, Dubai.</p>
       <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4365588121493!2d55.4209344!3d25.2232098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d5e797fc4d9%3A0xf85d9442ec3a2d58!2sGreen%20Zone%20Football%20Academy!5e0!3m2!1sen!2sae!4v1720868801234" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4097018167846!2d55.4209486!3d25.224219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d59db7ab0a3%3A0xf19be0a30ce19455!2sGreen%20Zone%20Football%2FPadel%20Mirdif!5e0!3m2!1sen!2sae!4v1720880000000" 
           width="100%" 
           height="300" 
           style="border:0; border-radius: 10px;" 
@@ -289,7 +285,6 @@
   </div>
 
   <script>
-    // حل المشكلة الأولى: الشاشة الترحيبية تظهر مرة واحدة فقط
     document.addEventListener('DOMContentLoaded', function() {
       if (!sessionStorage.getItem('visited')) {
         setTimeout(() => {
@@ -307,7 +302,6 @@
       }
     });
 
-    // حل المشكلة الثانية: إغلاق القائمة عند النقر على الروابط
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('overlay');
@@ -316,16 +310,14 @@
       document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : 'auto';
     }
 
-    // إضافة مستمعات الأحداث لجميع روابط القائمة
     document.querySelectorAll('.sidebar a').forEach(link => {
       link.addEventListener('click', function(e) {
-        // منع السلوك الافتراضي للروابط الداخلية
         if (this.getAttribute('href').startsWith('#')) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           target.scrollIntoView({ behavior: 'smooth' });
         }
-        toggleMenu(); // إغلاق القائمة بعد النقر
+        toggleMenu();
       });
     });
 
