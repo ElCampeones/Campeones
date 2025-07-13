@@ -11,10 +11,10 @@
       padding: 0;
       background: #f9f9f9;
       color: #333;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
-    /* Splash Screen */
+    /* Splash Screen Styles */
     #splash {
       position: fixed;
       top: 0;
@@ -50,6 +50,27 @@
       animation: textFocus 2s ease-out 1.5s forwards;
     }
 
+    /* Main Content Styles */
+    #main-content {
+      display: none; /* Hidden initially */
+    }
+
+    header {
+      background-color: #800020;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header img {
+      width: 220px;
+      background: white;
+      border-radius: 8px;
+      padding: 6px;
+      margin-bottom: 1rem;
+    }
+
     /* Animations */
     @keyframes logoFocus {
       0% { transform: scale(0.9); opacity: 0; }
@@ -64,4 +85,38 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    /* بقية الأنماط...
+    /* بقية أنماط الموقع... */
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img id="splash-logo" src="logo.png" alt="Campeones Logo">
+    <div id="splash-text">Football in its purest form</div>
+  </div>
+
+  <!-- Main Website Content -->
+  <div id="main-content">
+    <header>
+      <img src="logo.png" alt="Campeones Logo">
+      <h1>Campeones Football Training</h1>
+      <p>Developing youth through football in Dubai</p>
+    </header>
+
+    <!-- باقي محتوى الموقع... -->
+  </div>
+
+  <script>
+    // عرض المحتوى الرئيسي بعد 5 ثواني
+    setTimeout(() => {
+      document.getElementById('splash').style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        document.body.style.overflow = 'auto';
+      }, 500);
+    }, 5000);
+  </script>
+</body>
+</html>
