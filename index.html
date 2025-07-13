@@ -14,14 +14,14 @@
       overflow-x: hidden;
     }
 
-    /* Splash Screen Styles */
+    /* Splash Screen */
     #splash {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      background-color: #800020;
+      background-color: #ffffff;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -29,94 +29,75 @@
       z-index: 9999;
     }
 
+    #splash-logo-container {
+      background-color: white;
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     #splash-logo {
-      width: 280px;
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
-      animation: logoFocus 3s ease-in-out forwards;
+      width: 150px;
+      height: auto;
     }
 
     #splash-text {
-      color: white;
-      font-size: 2.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      margin-top: 1.5rem;
       text-align: center;
-      margin-top: 2rem;
-      opacity: 0;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      animation: textFocus 2s ease-out 1.5s forwards;
+      color: #800020;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
 
-    /* Main Content Styles */
     #main-content {
-      display: none; /* Hidden initially */
+      display: none;
     }
 
-    header {
-      background-color: #800020;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
+    /* Optional: smooth fade in */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
     }
 
-    header img {
-      width: 220px;
-      background: white;
-      border-radius: 8px;
-      padding: 6px;
-      margin-bottom: 1rem;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-
-    /* Animations */
-    @keyframes logoFocus {
-      0% { transform: scale(0.9); opacity: 0; }
-      20% { transform: scale(1.05); opacity: 1; }
-      50% { transform: scale(1); }
-      70% { opacity: 1; }
-      100% { transform: scale(0); opacity: 0; }
-    }
-
-    @keyframes textFocus {
-      0% { transform: translateY(30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    /* بقية أنماط الموقع... */
   </style>
 </head>
 <body>
 
   <!-- Splash Screen -->
   <div id="splash">
-    <img id="splash-logo" src="logo.png" alt="Campeones Logo">
-    <div id="splash-text">Football in its purest form</div>
+    <div id="splash-logo-container">
+      <img id="splash-logo" src="logo.png" alt="Campeones Logo" />
+    </div>
+    <div id="splash-text">
+      <p>Welcome to</p>
+      <p>Football as it should be</p>
+    </div>
   </div>
 
   <!-- Main Website Content -->
-  <div id="main-content">
+  <div id="main-content" class="fade-in">
+    <!-- باقي موقعك هنا -->
     <header>
-      <img src="logo.png" alt="Campeones Logo">
+      <img src="logo.png" alt="Campeones Logo" style="width: 220px; background: white; border-radius: 8px; padding: 6px; margin-bottom: 1rem;">
       <h1>Campeones Football Training</h1>
       <p>Developing youth through football in Dubai</p>
     </header>
 
-    <!-- باقي محتوى الموقع... -->
+    <section class="hero">
+      <h2>Train the way you want to perform — with purpose and intent.</h2>
+      <p>We rise thinkers. We shape decision-makers.</p>
+    </section>
+
+    <!-- يمكنك إضافة بقية الأقسام هنا -->
   </div>
 
   <script>
-    // عرض المحتوى الرئيسي بعد 5 ثواني
     setTimeout(() => {
-      document.getElementById('splash').style.opacity = 0;
-      setTimeout(() => {
-        document.getElementById('splash').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-        document.body.style.overflow = 'auto';
-      }, 500);
-    }, 5000);
-  </script>
-</body>
-</html>
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('main-content').style
