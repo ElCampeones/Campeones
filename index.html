@@ -16,9 +16,9 @@
     header {
       background-color: #800020;
       color: white;
-      padding: 2rem 1rem 1rem 1rem;
-      position: relative;
+      padding: 2rem;
       text-align: center;
+      position: relative;
     }
 
     header img {
@@ -27,44 +27,6 @@
       border-radius: 8px;
       padding: 6px;
       margin-bottom: 1rem;
-    }
-
-    /* Hamburger menu styles */
-    .menu-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      height: 100%;
-      width: 250px;
-      background-color: #800020;
-      color: white;
-      padding: 2rem 1rem;
-      transition: right 0.3s ease;
-      z-index: 1000;
-    }
-
-    .sidebar a {
-      display: block;
-      margin: 1rem 0;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .sidebar.show {
-      right: 0;
     }
 
     .hero {
@@ -122,9 +84,56 @@
       background-color: #800020;
       color: white;
     }
+
+    /* Sidebar menu */
+    .menu-toggle {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 250px;
+      background-color: #800020;
+      color: white;
+      padding: 2rem 1rem;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 1rem 0;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .sidebar.show {
+      left: 0;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar" id="sidebar">
+    <a href="#about">About Us</a>
+    <a href="#programs">Programs</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#location">Find Us</a>
+    <a href="#contact">Contact</a>
+  </div>
 
   <header>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -132,17 +141,6 @@
     <h1>Campeones Football Training</h1>
     <p>Developing youth through football in Dubai</p>
   </header>
-
-  <div class="sidebar" id="sidebar">
-    <a href="#about">About</a>
-    <a href="#programs">Programs</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#findus">Find Us</a>
-    <a href="#contact">Contact</a>
-    <a href="#vision">Vision</a>
-    <a href="#expect">What to Expect</a>
-    <a href="#coming">Coming Soon</a>
-  </div>
 
   <section class="hero">
     <h2>Train the way you want to perform — with purpose and intent.</h2>
@@ -158,9 +156,18 @@
     <h2>Programs</h2>
     <p>We offer year-round training, tournaments, and personalized coaching.</p>
     <table>
-      <tr><th>Day</th><th>Time</th></tr>
-      <tr><td>Tuesday</td><td>6:30 PM – 8:00 PM</td></tr>
-      <tr><td>Thursday</td><td>6:30 PM – 8:00 PM</td></tr>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+      </tr>
+      <tr>
+        <td>Tuesday</td>
+        <td>6:30 PM – 8:00 PM</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>6:30 PM – 8:00 PM</td>
+      </tr>
     </table>
   </section>
 
@@ -169,17 +176,18 @@
     <p><a href="gallery.html">View full gallery</a></p>
   </section>
 
-  <section id="findus">
+  <section id="location">
     <h2>Find Us</h2>
     <p>Visit us at our training grounds in Mirdif, Dubai.</p>
     <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!..." 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4365588121493!2d55.4209344!3d25.2232098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d5e797fc4d9%3A0xf85d9442ec3a2d58!2sGreen%20Zone%20Football%20Academy!5e0!3m2!1sen!2sae!4v1720868801234" 
         width="100%" 
         height="300" 
         style="border:0; border-radius: 10px;" 
         allowfullscreen="" 
-        loading="lazy"></iframe>
+        loading="lazy">
+      </iframe>
     </div>
   </section>
 
@@ -187,26 +195,6 @@
     <h2>Contact Us</h2>
     <p>Email: info@campeones.ae</p>
     <p>Location: Mirdif, Dubai</p>
-  </section>
-
-  <section id="vision">
-    <h2>Who We Are</h2>
-    <p>Campeones is a youth football initiative grounded in discipline, awareness, and passion...</p>
-  </section>
-
-  <section id="expect">
-    <h2>What to Expect</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li>✔️ Weekly training sessions (Tues & Thurs)</li>
-      <li>✔️ Focus on discipline and fundamentals</li>
-      <li>✔️ Friendly and respectful environment</li>
-      <li>✔️ Training the mind, not just the legs</li>
-    </ul>
-  </section>
-
-  <section id="coming">
-    <h2>Coming Soon</h2>
-    <p>Internal tournaments, weekend matches, and more are on the way!</p>
   </section>
 
   <footer>
