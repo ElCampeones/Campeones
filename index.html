@@ -11,6 +11,47 @@
       padding: 0;
       background: #f9f9f9;
       color: #333;
+      overflow: hidden; /* لمنع التمرير أثناء الـ splash */
+    }
+
+    /* Splash Screen */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: white;
+      color: #800020;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #splash img {
+      width: 160px;
+      border-radius: 10px;
+      padding: 5px;
+      margin-bottom: 1rem;
+    }
+
+    #splash h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: #800020;
+    }
+
+    #splash p {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      color: #800020;
+      animation: fadeText 2s ease-in-out;
+    }
+
+    #splash.hidden {
+      display: none;
     }
 
     header {
@@ -18,7 +59,6 @@
       color: white;
       padding: 2rem;
       text-align: center;
-      position: relative;
     }
 
     header img {
@@ -84,173 +124,97 @@
       background-color: #800020;
       color: white;
     }
-
-    /* Sidebar */
-    .menu-toggle {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1002;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      height: 100%;
-      width: 250px;
-      background-color: #800020;
-      color: white;
-      padding: 2rem 1rem;
-      transition: left 0.3s ease;
-      z-index: 1003;
-      visibility: hidden; /* إضافة هذه السطر */
-    }
-
-    .sidebar.show {
-      left: 0;
-      visibility: visible; /* إضافة هذه السطر */
-    }
-
-    .sidebar a {
-      display: block;
-      margin: 1rem 0;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      cursor: pointer;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      display: none;
-      z-index: 1001;
-    }
-
-    .overlay.show {
-      display: block;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Overlay and Sidebar -->
-  <div class="overlay" id="overlay"></div>
-
-  <div class="sidebar" id="sidebar">
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
-    <a href="#about">About Us</a>
-    <a href="#programs">Programs</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="#location">Find Us</a>
-    <a href="#contact">Contact</a>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="logo.png" alt="Campeones Logo">
+    <h1>Welcome to</h1>
+    <p id="splash-text">Football as it is</p>
   </div>
 
-  <header>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <img src="logo.png" alt="Campeones Logo">
-    <h1>Campeones Football Training</h1>
-    <p>Developing youth through football in Dubai</p>
-  </header>
+  <!-- Main Content -->
+  <div id="main-content" class="hidden">
+    <header>
+      <img src="logo.png" alt="Campeones Logo">
+      <h1>Campeones Football Training</h1>
+      <p>Developing youth through football in Dubai</p>
+    </header>
 
-  <section class="hero">
-    <h2>Train the way you want to perform — with purpose and intent.</h2>
-    <p>We rise thinkers. We shape decision-makers.</p>
-  </section>
+    <section class="hero">
+      <h2>Train the way you want to perform — with purpose and intent.</h2>
+      <p>We rise thinkers. We shape decision-makers.</p>
+    </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>Campeones FT is dedicated to training boys ages 5–17 with passion, discipline, and joy.</p>
-  </section>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>Campeones FT is dedicated to training boys ages 5–17 with passion, discipline, and joy.</p>
+    </section>
 
-  <section id="programs">
-    <h2>Programs</h2>
-    <p>We offer year-round training, tournaments, and personalized coaching.</p>
-    <table>
-      <tr>
-        <th>Day</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <td>Tuesday</td>
-        <td>6:30 PM – 8:00 PM</td>
-      </tr>
-      <tr>
-        <td>Thursday</td>
-        <td>6:30 PM – 8:00 PM</td>
-      </tr>
-    </table>
-  </section>
+    <section id="programs">
+      <h2>Programs</h2>
+      <p>We offer year-round training, tournaments, and personalized coaching.</p>
+      <table>
+        <tr>
+          <th>Day</th>
+          <th>Time</th>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td>6:30 PM – 8:00 PM</td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td>6:30 PM – 8:00 PM</td>
+        </tr>
+      </table>
+    </section>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <p><a href="gallery.html">View full gallery</a></p>
-  </section>
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <p><a href="gallery.html">View full gallery</a></p>
+    </section>
 
-  <section id="location">
-    <h2>Find Us</h2>
-    <p>Visit us at our training grounds in Mirdif, Dubai.</p>
-    <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4365588121493!2d55.4209344!3d25.2232098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d5e797fc4d9%3A0xf85d9442ec3a2d58!2sGreen%20Zone%20Football%20Academy!5e0!3m2!1sen!2sae!4v1720868801234" 
-        width="100%" 
-        height="300" 
-        style="border:0; border-radius: 10px;" 
-        allowfullscreen="" 
-        loading="lazy">
-      </iframe>
-    </div>
-  </section>
+    <section id="location">
+      <h2>Find Us</h2>
+      <p>Visit us at our training grounds in Mirdif, Dubai.</p>
+      <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4365588121493!2d55.4209344!3d25.2232098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d5e797fc4d9%3A0xf85d9442ec3a2d58!2sGreen%20Zone%20Football%20Academy!5e0!3m2!1sen!2sae!4v1720868801234" 
+          width="100%" 
+          height="300" 
+          style="border:0; border-radius: 10px;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: info@campeones.ae</p>
-    <p>Location: Mirdif, Dubai</p>
-  </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: info@campeones.ae</p>
+      <p>Location: Mirdif, Dubai</p>
+    </section>
 
-  <footer>
-    <p>© 2025 Campeones Football Training. All rights reserved.</p>
-  </footer>
+    <footer>
+      <p>© 2025 Campeones Football Training. All rights reserved.</p>
+    </footer>
+  </div>
 
+  <!-- JavaScript -->
   <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      
-      sidebar.classList.toggle('show');
-      overlay.classList.toggle('show');
-      
-      // إيقاف تمرير الصفحة عند فتح القائمة
-      if (sidebar.classList.contains('show')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    }
+    const splashText = document.getElementById("splash-text");
+    setTimeout(() => {
+      splashText.textContent = "Football as it should be";
+    }, 1000);
 
-    // إغلاق القائمة عند النقر على الـ overlay
-    document.getElementById('overlay').addEventListener('click', toggleMenu);
+    setTimeout(() => {
+      document.getElementById("splash").classList.add("hidden");
+      document.getElementById("main-content").classList.remove("hidden");
+      document.body.style.overflow = "auto";
+    }, 2000);
   </script>
-
 </body>
 </html>
