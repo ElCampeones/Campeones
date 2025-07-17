@@ -1,87 +1,116 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Campeones Football Club</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }header {
-  background-color: #7d002c;
-  color: white;
-  padding: 10px 0;
-  text-align: center;
-}
-
-header img {
-  height: 60px;
-}
-
-.slider {
-  width: 90%;
-  max-width: 900px;
-  height: 400px;
-  margin: 40px auto;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  position: relative;
-}
-
-.slides {
-  display: flex;
-  width: 300%;
-  height: 100%;
-  animation: slide 12s infinite;
-}
-
-.slides img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 20px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.slides img:hover {
-  transform: scale(1.02);
-}
-
-@keyframes slide {
-  0% {margin-left: 0%;}
-  33% {margin-left: -100%;}
-  66% {margin-left: -200%;}
-  100% {margin-left: 0%;}
-}
-
-footer {
-  background-color: #7d002c;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كامبيونيس لكرة القدم</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #7d002c;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        header img {
+            height: 60px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* ستايل السلايدر فقط */
+        .slider {
+            width: 90%;
+            max-width: 900px;
+            height: 400px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: slide 12s infinite;
+        }
+        
+        .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .slides img:hover {
+            transform: scale(1.02);
+        }
+        
+        @keyframes slide {
+            0% {margin-left: 0%;}
+            33% {margin-left: -100%;}
+            66% {margin-left: -200%;}
+            100% {margin-left: 0%;}
+        }
+        
+        footer {
+            background-color: #7d002c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Campeones Logo" />
-    <h1>Welcome to Campeones Football Club</h1>
-  </header>  <div class="slider">
-    <div class="slides">
-      <img src="image1.jpg" alt="Training 1" />
-      <img src="image2.jpg" alt="Training 2" />
-      <img src="image3.jpg" alt="Training 3" />
+    <header>
+        <img src="logo.png" alt="شعار النادي">
+        <h1>مرحبا بكم في نادي كامبيونيس لكرة القدم</h1>
+    </header>
+    
+    <div class="container">
+        <h2>عن النادي</h2>
+        <p>نادي كامبيونيس هو نادي كرة قدم محترف تأسس عام 2005. نحن نهدف إلى تطوير المواهب الشابة وتعزيز روح الفريق.</p>
+        
+        <h2>أحدث الأخبار</h2>
+        <p>تابع آخر أخبار الفريق ونتائج المباريات والبطولات التي نشارك فيها.</p>
+        
+        <!-- السلايدر هنا -->
+        <div class="slider">
+            <div class="slides">
+                <img src="stadium.jpg" alt="ملعب النادي">
+                <img src="team.jpg" alt="فريق النادي">
+                <img src="fans.jpg" alt="جماهير النادي">
+            </div>
+        </div>
+        
+        <h2>الجدول الزمني</h2>
+        <p>تعرف على مواعيد مبارياتنا القادمة وحجز التذاكر.</p>
     </div>
-  </div>  <footer>
-    <p>&copy; 2025 Campeones Football Club. All rights reserved.</p>
-  </footer>
+    
+    <footer>
+        © 2025 نادي كامبيونيس لكرة القدم. جميع الحقوق محفوظة.
+    </footer>
 </body>
 </html>
