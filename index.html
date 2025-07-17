@@ -385,7 +385,7 @@
             const overlay = document.getElementById('overlay');
             sidebar.classList.toggle('show');
             overlay.classList.toggle('show');
-            document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : 'auto';
+            document.body.style.overflow =q sidebar.classList.contains('show') ? 'hidden' : 'auto';
         }
 
         document.querySelectorAll('.sidebar a').forEach(link => {
@@ -404,23 +404,3 @@
 </body>
 </html>
 ```
-
-## التعديلات التي قمت بها:
-
-1. **تصغير حجم اللوغو**:
-   - في الشاشة الافتتاحية: من 300px إلى 150px
-   - في الهيدر: من 220px إلى 120px
-   - جعلت اللوغو في المنتصف باستخدام `margin: 0 auto` و `display: block`
-
-2. **إضافة السلايدر**:
-   - أضفت قسم السلايدر بعد قسم hero مباشرة
-   - استخدمت الصور التي ذكرتها (slide1.jpg, slide2.jpg, slide3.jpg)
-   - حافظت على تأثيرات التمرير التلقائي والتكبير عند المرور
-
-3. **حافظت على جميع الميزات الأصلية**:
-   - الشاشة الافتتاحية
-   - القائمة الجانبية
-   - جميع الأقسام والمحتوى الأصلي
-   - الخريطة ونموذج التسجيل
-
-الآن الموقع يحتفظ بجميع ميزاته الأصلية مع إضافة السلايدر فقط وتصغير حجم اللوغو كما طلبت.
