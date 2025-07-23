@@ -317,21 +317,30 @@
         </section>
 
         <section id="players">
-            <h2>Player Profiles</h2>
-            <p>Coming soon — player information, stats and highlights.</p>
-        </section>
+    <h2>Player Profiles</h2>
+    <p>Coming soon — player information, stats and highlights.</p>
+</section>
 
-        <section id="register" class="form-section">
-            <h2>Join Campeones S. C</h2>
-            <form>
-                <input type="text" placeholder="Player Name" required>
-                <input type="number" placeholder="Age" required>
-                <input type="email" placeholder="Parent Email" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <textarea placeholder="Additional Notes (optional)"></textarea>
-                <button type="submit">Submit</button>
-            </form>
-        </section>
+<section id="register" class="form-section">
+    <h2>Join Campeones S. C</h2>
+    <form action="https://formsubmit.co/Campeones.ae@gmail.com" method="POST">
+        <!-- Basic fields -->
+        <input type="text" name="player_name" placeholder="Player Name" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <input type="email" name="parent_email" placeholder="Parent Email" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <textarea name="notes" placeholder="Additional Notes (optional)"></textarea>
+
+        <!-- reCAPTCHA protection -->
+        <input type="hidden" name="_captcha" value="true">
+
+        <!-- Optional: redirect after submission -->
+        <input type="hidden" name="_next" value="https://campeones.ae/thanks.html">
+
+        <!-- Submit button -->
+        <button type="submit">Submit</button>
+    </form>
+</section>
 
         <section id="location">
   <h2>Find Us</h2>
