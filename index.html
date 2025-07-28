@@ -1,426 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVVV070LDK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-WVVV070LDK');
-    </script>
-    <title>campeones SC</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-            color: #333;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campeones SC</title>
+  <meta name="description" content="Campeones SC - Football in its purest form. Training boys ages 4-16 with passion, discipline, and joy.">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
 
-        /* Splash Screen */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #800020;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #800020; /* Burgundy color */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
 
-        .splash-logo {
-            width: 150px;
-            background: white;
-            border-radius: 50%;
-            padding: 5px;
-            margin-bottom: 30px;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 0 3px white;
-        }
+    .splash-logo {
+      width: 150px;
+      height: 150px;
+      background: white;
+      border-radius: 50%;
+      padding: 10px;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 0 3px white;
+      object-fit: contain;
+    }
 
-        .splash-text {
-            color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 1s ease-in 1s forwards;
-        }
+    .splash-text {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease-in 1s forwards;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
 
-        #main-content {
-            display: none;
-        }
+    #main-content {
+      display: none;
+      opacity: 0;
+      animation: fadeInContent 0.5s ease-in forwards;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+    @keyframes fadeInContent {
+      to { opacity: 1; }
+    }
 
-        /* Header */
-        header {
-            background-color: #800020;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: relative;
-        }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
 
-        header img {
-            width: 120px;
-            background: white;
-            border-radius: 50%;
-            padding: 5px;
-            margin: 0 auto;
-            display: block;
-            box-shadow: 0 0 0 3px white;
-            object-fit: contain;
-        }
+    header {
+      background-color: #800020;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
 
-        /* Slider Styles */
-        .slider {
-            width: 90%;
-            max-width: 900px;
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            position: relative;
-        }
+    header img {
+      width: 120px;
+      height: 120px;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
+      margin: 0 auto 15px;
+      display: block;
+      box-shadow: 0 0 0 3px white;
+      object-fit: contain;
+    }
 
-        .slides {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            animation: slide 12s infinite;
-        }
+    header h1 {
+      margin: 0.5rem 0;
+      font-size: 2.2rem;
+    }
 
-        .slides img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
+    header p {
+      margin: 0;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
 
-        .slides img:hover {
-            transform: scale(1.02);
-        }
+    .slider {
+      width: 90%;
+      max-width: 900px;
+      height: 400px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+    }
 
-        @keyframes slide {
-            0% {margin-left: 0%;}
-            33% {margin-left: -100%;}
-            66% {margin-left: -200%;}
-            100% {margin-left: 0%;}
-        }
+    .slides {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slide 12s infinite;
+    }
 
-        .hero {
-            background: none;
-            color: #800020;
-            padding: 2.5rem 1rem;
-            text-align: center;
-        }
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease-in-out;
+    }
 
-        .hero h2 {
-            font-size: 2rem;
-            font-weight: bold;
-        }
+    .slides img:hover {
+      transform: scale(1.02);
+    }
 
-        section {
-            padding: 2rem;
-            text-align: center;
-        }
+    @keyframes slide {
+      0% { margin-left: 0%; }
+      33% { margin-left: -100%; }
+      66% { margin-left: -200%; }
+      100% { margin-left: 0%; }
+    }
 
-        footer {
-            background-color: #222;
-            color: #aaa;
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.9rem;
-        }
+    .hero {
+      background: none;
+      color: #800020;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
 
-        a {
-            color: #f7c200;
-            text-decoration: none;
-        }
+    .hero h2 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
 
-        table {
-            margin: 1rem auto;
-            border-collapse: collapse;
-            width: 80%;
-            max-width: 500px;
-        }
+    section {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        th, td {
-            padding: 0.75rem;
-            border: 1px solid #800020;
-            text-align: center;
-        }
+    section h2 {
+      color: #800020;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
 
-        th {
-            background-color: #800020;
-            color: white;
-        }
+    section p {
+      font-size: 1.1rem;
+    }
 
-        .menu-toggle {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1002;
-        }
+    footer {
+      background-color: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            height: 100%;
-            width: 250px;
-            background-color: #800020;
-            color: white;
-            padding: 2rem 1rem;
-            transition: left 0.3s ease;
-            z-index: 1003;
-            visibility: hidden;
-        }
+    footer p {
+      margin: 0;
+    }
 
-        .sidebar.show {
-            left: 0;
-            visibility: visible;
-        }
+    a {
+      color: #f7c200;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-        .sidebar a {
-            display: block;
-            margin: 1rem 0;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    a:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
 
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-        }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .slider {
+        height: 300px;
+      }
+      
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+      
+      .splash-text {
+        font-size: 2rem;
+      }
+    }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            display: none;
-            z-index: 1001;
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
-        .form-section input, 
-        .form-section select, 
-        .form-section textarea {
-            display: block;
-            margin: 0.5rem auto;
-            padding: 0.75rem;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .form-section button {
-            background-color: #800020;
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
+    @media (max-width: 480px) {
+      .slider {
+        height: 250px;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+      
+      .splash-text {
+        font-size: 1.5rem;
+      }
+      
+      .splash-logo, header img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Splash Screen -->
-    <div id="splash-screen">
-        <img src="logo2.png" alt="Campeones Logo" class="splash-logo">
-        <div class="splash-text">Football in it's purest form</div>
-    </div>
-
-    <!-- Main Content -->
-    <div id="main-content">
-        <header>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <img src="logo2.png" alt="Campeones Logo">
-            <h1>Campeones S.C</h1>
-            <p>we rise thinkers, we shape decision-makers</p>
-        </header>
-
-        <section class="hero">
-            <h2>everyone's limit is just our starting line.</h2>
-        </section>
-
-        <!-- Slider Section -->
-        <div class="slider">
-            <div class="slides">
-                <img src="slide1.jpg" alt="Training Session">
-                <img src="slide2.jpg" alt="Team Photo">
-                <img src="slide3.jpg" alt="Match Action">
-            </div>
-        </div>
-
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Campeones S.C is dedicated to training boys ages 4–16 with passion, discipline, and joy.</p>
-        </section>
-
-        <section id="programs">
-            <h2>Programs</h2>
-            <p>We offer year-round training, tournaments, and personalized coaching.</p>
-            <table>
-                <tr><th>Day</th><th>Time</th></tr>
-                <tr><td>Tuesday</td><td>6:30 PM – 8:00 PM</td></tr>
-                <tr><td>Thursday</td><td>6:30 PM – 8:00 PM</td></tr>
-            </table>
-        </section>
-
-        <section id="gallery">
-            <h2>Gallery</h2>
-            <p><a href="gallery.html">View full gallery</a></p>
-        </section>
-
-        <section id="players">
-    <h2>Player Profiles</h2>
-    <p>Coming soon — player information, stats and highlights.</p>
-</section>
-
-<section id="register" class="form-section">
-    <h2>Join Campeones S. C</h2>
-    <form action="https://formsubmit.co/Campeones.ae@gmail.com" method="POST">
-        <!-- Basic fields -->
-        <input type="text" name="player_name" placeholder="Player Name" required>
-        <input type="number" name="age" placeholder="Age" required>
-        <input type="email" name="parent_email" placeholder="Parent Email" required>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
-        <textarea name="notes" placeholder="Additional Notes (optional)"></textarea>
-
-        <!-- reCAPTCHA protection -->
-        <input type="hidden" name="_captcha" value="true">
-
-        <!-- Optional: redirect after submission -->
-        <input type="hidden" name="_next" value="https://campeones.ae/thanks.html">
-
-        <!-- Submit button -->
-        <button type="submit">Submit</button>
-    </form>
-</section>
-
-        <section id="location">
-  <h2>Find Us</h2>
-  <p>Visit us at our training grounds in AL Mawakeb school, Al Mizhar, Dubai.</p>
-  <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.509026229824!2d55.422830275435204!3d25.23049467769501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d45d455ac11%3A0x91a716cb7d6e294a!2sAl%20Mawakeb%20School%20-%20Al%20Mizhar!5e0!3m2!1sen!2sae!4v1721747750284!5m2!1sen!2sae"
-      width="100%"
-      height="300"
-      style="border:0; border-radius: 10px;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+  <div id="splash-screen">
+    <img src="logo2.png" alt="Campeones Logo" class="splash-logo" />
+    <div class="splash-text">Football in its purest form</div>
   </div>
-</section>
 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: info@campeones.ae</p>
-            <p>Location: Al Mawakeb school, Al Mizhar, Dubai, sharjah AlJoker playground</p>
-        </section>
+  <div id="main-content">
+    <header>
+      <img src="logo2.png" alt="Campeones Logo" />
+      <h1>Campeones S.C</h1>
+      <p>We rise thinkers, we shape decision-makers</p>
+    </header>
 
-        <footer>
-            <p>© 2025 Campeones S.C. All rights reserved.</p>
-        </footer>
+    <section class="hero">
+      <h2>Everyone's limit is just our starting line.</h2>
+    </section>
 
-        <!-- Sidebar Menu -->
-        <div class="sidebar" id="sidebar">
-            <button class="close-btn" onclick="toggleMenu()">✕</button>
-            <a href="#about">About Us</a>
-            <a href="#programs">Programs</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#players">Player Profiles</a>
-            <a href="#register">Join Us</a>
-            <a href="#location">Find Us</a>
-            <a href="#contact">Contact Us</a>
-        </div>
-
-        <div class="overlay" id="overlay"></div>
+    <div class="slider">
+      <div class="slides" id="slider-container">
+        <!-- Fallback images in case JSON fails to load -->
+        <img src="images/slide1.jpg" alt="Team training session">
+        <img src="images/slide2.jpg" alt="Youth football match">
+        <img src="images/slide3.jpg" alt="Team celebration">
+      </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (!sessionStorage.getItem('visited')) {
-                setTimeout(() => {
-                    document.getElementById('splash-screen').style.opacity = '0';
-                    setTimeout(() => {
-                        document.getElementById('splash-screen').style.display = 'none';
-                        document.getElementById('main-content').style.display = 'block';
-                        document.body.style.overflow = 'auto';
-                    }, 500);
-                }, 4000);
-                sessionStorage.setItem('visited', 'true');
-            } else {
-                document.getElementById('splash-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            }
-        });
+    <section>
+      <h2>About Us</h2>
+      <p>Campeones S.C is dedicated to training boys ages 4–16 with passion, discipline, and joy. Our mission is to develop not just football skills but also character, teamwork, and leadership qualities that will serve our players both on and off the pitch.</p>
+    </section>
 
-        function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('show');
-            document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : 'auto';
+    <footer>
+      <p>© 2025 Campeones S.C. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Splash screen logic
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!sessionStorage.getItem('visited')) {
+        setTimeout(() => {
+          document.getElementById('splash-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('splash-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.body.style.overflow = 'auto';
+          }, 500);
+        }, 4000);
+        sessionStorage.setItem('visited', 'true');
+      } else {
+        document.getElementById('splash-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+      }
+    });
+
+    // Load slider images from JSON
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-
-        document.querySelectorAll('.sidebar a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-                toggleMenu();
-            });
+        return response.json();
+      })
+      .then(data => {
+        const sliderContainer = document.getElementById('slider-container');
+        // Clear any fallback content
+        sliderContainer.innerHTML = '';
+        
+        data.forEach(slide => {
+          const img = document.createElement('img');
+          img.src = slide.image;
+          img.alt = slide.title || 'Campeones SC image';
+          sliderContainer.appendChild(img);
         });
-
-        document.getElementById('overlay').addEventListener('click', toggleMenu);
-    </script>
+      })
+      .catch(error => {
+        console.error('Error loading slider images:', error);
+        // Fallback images will remain if JSON fails to load
+      });
+  </script>
 </body>
 </html>
