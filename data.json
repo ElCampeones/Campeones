@@ -1,6 +1,6 @@
 [
-  { "image": "main/slide1.jpg", "alt": "Training Day" },
-  { "image": "main/slide2.jpg", "alt": "Match Time" },
-  { "image": "main/slide3.jpg", "alt": "Celebration" },
-  { "image": "main/slide4.jpg", "alt": "Team Photo" }
+  { "image": "main/slide1.jpg", "alt": "Training Session 1" },
+  { "image": "main/slide2.jpg", "alt": "Team Huddle" },
+  { "image": "main/slide3.jpg", "alt": "Match Day" },
+  { "image": "main/slide4.jpg", "alt": "Victory Celebration" }
 ]
