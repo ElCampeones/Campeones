@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Campeones SC - Photo Gallery</title>
+  <title>Campeones SC - Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="View our football training sessions, matches and team events">
+  <meta name="description" content="Explore photos from Campeones Football Academy">
   <style>
     :root {
       --primary-color: #800020;
-      --secondary-color: #f7c200;
-      --text-color: #333;
-      --light-bg: #f9f9f9;
       --white: #fff;
+      --light-bg: #f9f9f9;
+      --text-color: #333;
     }
 
     body {
@@ -19,7 +18,6 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--light-bg);
       color: var(--text-color);
-      line-height: 1.6;
     }
 
     header {
@@ -27,279 +25,146 @@
       color: var(--white);
       padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      position: relative;
     }
 
     h1 {
       margin: 0;
-      font-size: 1.8rem;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-
-    .gallery-container {
-      position: relative;
+      font-size: 2rem;
     }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
-      padding: 1rem 0;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
     }
 
-    .gallery-item {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      aspect-ratio: 4/3;
-      cursor: pointer;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .gallery-item img {
+    .gallery img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      height: auto;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
       transition: transform 0.3s;
     }
 
-    .gallery-item:hover img {
+    .gallery img:hover {
       transform: scale(1.03);
     }
 
-    /* Lightbox Styles */
+    .back-btn {
+      display: inline-block;
+      margin: 2rem auto;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s;
+      text-align: center;
+    }
+
+    .back-btn:hover {
+      background: #600018;
+    }
+
     .lightbox {
-      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
+      display: none;
       align-items: center;
       justify-content: center;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
     }
 
     .lightbox.active {
       display: flex;
     }
 
-    .lightbox-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-    }
-
-    .lightbox-img {
-      max-height: 80vh;
-      max-width: 90vw;
-      border-radius: 5px;
-    }
-
-    .lightbox-close,
-    .lightbox-nav {
-      position: absolute;
-      color: var(--white);
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      cursor: pointer;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
-      border-radius: 50%;
+    .lightbox:focus {
+      outline: none;
     }
 
     .lightbox-close {
+      position: absolute;
       top: 20px;
       right: 20px;
-    }
-
-    .lightbox-nav {
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox-prev {
-      left: 20px;
-    }
-
-    .lightbox-next {
-      right: 20px;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 2rem auto;
-      padding: 0.8rem 1.5rem;
-      background: var(--primary-color);
       color: var(--white);
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .back-btn:hover {
-      background: #600018;
-      transform: translateY(-2px);
-    }
-
-    /* Accessibility */
-    a:focus, button:focus {
-      outline: 2px solid var(--secondary-color);
-      outline-offset: 3px;
-    }
-
-    @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 15px;
-      }
-      
-      .lightbox-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 1.5rem; }
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+      font-size: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Campeones SC Gallery</h1>
+    <h1>Campeones Gallery</h1>
   </header>
 
-  <main>
-    <div class="gallery-container">
-      <div class="gallery">
-        <div class="gallery-item" data-index="0">
-          <img src="slide1.jpg" alt="Team training session" loading="lazy">
-        </div>
-        <div class="gallery-item" data-index="1">
-          <img src="slide2.jpg" alt="Match action" loading="lazy">
-        </div>
-        <div class="gallery-item" data-index="2">
-          <img src="slide3.jpg" alt="Team celebration" loading="lazy">
-        </div>
-        <!-- Add more images as needed -->
-      </div>
-    </div>
+  <div class="gallery" id="gallery"></div>
 
-    <a href="index.html" class="back-btn" aria-label="Return to home page">
-      ← Back to Home
-    </a>
+  <div style="text-align: center;">
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </div>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-      <button class="lightbox-close" id="lightboxClose">&times;</button>
-      <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
-      <div class="lightbox-content">
-        <img class="lightbox-img" id="lightboxImage" src="" alt="">
-      </div>
-      <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
-    </div>
-  </main>
+  <div class="lightbox" id="lightbox" tabindex="-1">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="Preview" />
+  </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightboxImage');
-      const lightboxClose = document.getElementById('lightboxClose');
-      const lightboxPrev = document.getElementById('lightboxPrev');
-      const lightboxNext = document.getElementById('lightboxNext');
-      
-      let currentIndex = 0;
-      const images = Array.from(galleryItems).map(item => ({
-        src: item.querySelector('img').src,
-        alt: item.querySelector('img').alt
-      }));
+    const images = [
+      { image: 'main/slide1.jpg', alt: 'Training Day' },
+      { image: 'main/slide2.jpg', alt: 'Match Time' },
+      { image: 'main/slide3.jpg', alt: 'Celebration' },
+      { image: 'main/slide4.jpg', alt: 'Team Spirit' }
+    ];
 
-      // Open lightbox
-      galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-          currentIndex = parseInt(this.getAttribute('data-index'));
-          updateLightboxImage();
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
 
-      // Close lightbox
-      lightboxClose.addEventListener('click', function() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      });
+    images.forEach(img => {
+      const el = document.createElement('img');
+      el.src = img.image;
+      el.alt = img.alt;
+      el.loading = 'lazy';
+      el.addEventListener('click', () => openLightbox(img));
+      gallery.appendChild(el);
+    });
 
-      // Navigation
-      lightboxPrev.addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateLightboxImage();
-      });
+    function openLightbox(img) {
+      lightbox.classList.add('active');
+      lightboxImg.src = img.image;
+      lightboxImg.alt = img.alt;
+      lightbox.focus();
+    }
 
-      lightboxNext.addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % images.length;
-        updateLightboxImage();
-      });
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    }
 
-      // Keyboard navigation
-      document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('active')) return;
-        
-        if (e.key === 'Escape') {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        } else if (e.key === 'ArrowLeft') {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          updateLightboxImage();
-        } else if (e.key === 'ArrowRight') {
-          currentIndex = (currentIndex + 1) % images.length;
-          updateLightboxImage();
-        }
-      });
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
 
-      // Update lightbox image
-      function updateLightboxImage() {
-        lightboxImage.src = images[currentIndex].src;
-        lightboxImage.alt = images[currentIndex].alt;
-      }
-
-      // Close when clicking outside image
-      lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        }
-      });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 </body>
