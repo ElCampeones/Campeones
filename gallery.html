@@ -2,66 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Campeones Gallery</title>
+  <title>Campeones SC - Photo Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View our football training sessions, matches and team events">
   <style>
+    :root {
+      --primary-color: #800020;
+      --secondary-color: #f7c200;
+      --text-color: #333;
+      --light-bg: #f9f9f9;
+      --white: #fff;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
     }
 
     header {
-      background: #800020;
-      color: white;
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 1rem;
     }
 
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 1rem 0;
     }
 
-    .gallery img {
-      width: 300px;
-      max-width: 100%;
+    .gallery-item {
+      position: relative;
       border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      aspect-ratio: 4/3;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    .back {
-      margin-top: 2rem;
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background: #800020;
-      color: white;
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2rem auto;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      color: var(--white);
       border-radius: 5px;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #600018;
+      transform: translateY(-2px);
+    }
+
+    /* Accessibility */
+    a:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 3px;
+    }
+
+    /* Loading effect */
+    .gallery-item img {
+      background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+      background-size: 200% 100%;
+      animation: 1.5s shine linear infinite;
+    }
+
+    @keyframes shine {
+      to { background-position-x: -200%; }
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.5rem; }
+      .gallery {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Campeones Gallery</h1>
+    <h1>Campeones SC Gallery</h1>
   </header>
 
-  <div class="gallery">
-    <a href="slide1.jpg" target="_blank"><img src="slide1.jpg" alt="Image 1"></a>
-    <a href="slide2.jpg" target="_blank"><img src="slide2.jpg" alt="Image 2"></a>
-    <a href="slide3.jpg" target="_blank"><img src="slide3.jpg" alt="Image 3"></a>
-    <!-- أضف المزيد إذا احتجت -->
-  </div>
+  <main>
+    <div class="gallery">
+      <a href="slide1.jpg" class="gallery-item" target="_blank" rel="noopener noreferrer">
+        <img src="slide1.jpg" alt="Team training session" loading="lazy">
+      </a>
+      <a href="slide2.jpg" class="gallery-item" target="_blank" rel="noopener noreferrer">
+        <img src="slide2.jpg" alt="Match action" loading="lazy">
+      </a>
+      <a href="slide3.jpg" class="gallery-item" target="_blank" rel="noopener noreferrer">
+        <img src="slide3.jpg" alt="Team celebration" loading="lazy">
+      </a>
+      <!-- Add more images as needed -->
+    </div>
 
-  <a class="back" href="index.html">← Back to Home</a>
+    <a href="index.html" class="back-btn" aria-label="Return to home page">
+      ← Back to Home
+    </a>
+  </main>
+
+  <script>
+    // Optional: Add lightbox functionality later
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        // Could add lightbox effect here
+      });
+    });
+  </script>
 </body>
 </html>
