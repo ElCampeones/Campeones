@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Campeones SC - Football Academy for Boys 4-16</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campeones SC - Football Academy</title>
   <meta name="description" content="Campeones SC - Football in its purest form. Training boys ages 4-16 with passion, discipline, and joy.">
   <style>
     :root {
@@ -261,6 +261,59 @@
       font-size: clamp(1rem, 3vw, 1.1rem);
     }
 
+    .gallery-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .gallery-preview a {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-preview a:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .gallery-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-preview a:hover img {
+      transform: scale(1.03);
+    }
+
+    .view-more {
+      display: inline-block;
+      margin: 1.5rem auto;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      color: var(--white);
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .view-more:hover {
+      background-color: #600018;
+      transform: translateY(-2px);
+    }
+
     footer {
       background-color: var(--dark-bg);
       color: #aaa;
@@ -314,15 +367,6 @@
       transform: translateY(-2px);
     }
 
-    @media (max-width: 768px) {
-      .slider { height: 300px; }
-    }
-
-    @media (max-width: 480px) {
-      .slider { height: 250px; }
-      .splash-logo, header img { width: 100px; height: 100px; }
-    }
-
     /* Accessibility improvements */
     button:focus, 
     input:focus, 
@@ -333,95 +377,103 @@
       outline-offset: 2px;
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
+    @media (max-width: 768px) {
+      .slider { height: 300px; }
+      .gallery-preview {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider { height: 250px; }
+      .splash-logo, header img { width: 100px; height: 100px; }
+      .gallery-preview {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div id="splash-screen">
-    <img src="logo2.png" alt="Campeones Logo" class="splash-logo" />
+    <img src="logo2.png" alt="Campeones Logo" class="splash-logo" loading="eager" />
     <div class="splash-text">Football in its purest form</div>
   </div>
 
   <div id="main-content">
     <header>
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</button>
-      <img src="logo2.png" alt="Campeones Logo" />
+      <img src="logo2.png" alt="Campeones Logo" loading="eager" />
       <h1>Campeones S.C</h1>
       <p>We rise thinkers, we shape decision-makers</p>
     </header>
 
-    <section class="hero">
-      <h2>Everyone's limit is just our starting line.</h2>
-    </section>
+    <main>
+      <section class="hero">
+        <h2>Everyone's limit is just our starting line.</h2>
+      </section>
 
-    <div class="slider">
-      <div class="slides" id="slider-container">
-        <img src="slide1.jpg" alt="Youth football training session">
-        <img src="slide2.jpg" alt="Campeones team match action">
-        <img src="slide3.jpg" alt="Team celebration after victory">
+      <div class="slider">
+        <div class="slides" id="slider-container">
+          <img src="slide1.jpg" alt="Youth football training session" loading="lazy">
+          <img src="slide2.jpg" alt="Campeones team match action" loading="lazy">
+          <img src="slide3.jpg" alt="Team celebration after victory" loading="lazy">
+        </div>
       </div>
-    </div>
 
-    <section id="about">
-      <h2>About Us</h2>
-      <p>Campeones S.C is dedicated to training boys ages 4–16 with passion, discipline, and joy. Our mission is to develop not just football skills but also character, teamwork, and leadership qualities.</p>
-    </section>
+      <section id="about">
+        <h2>About Us</h2>
+        <p>Campeones S.C is dedicated to training boys ages 4–16 with passion, discipline, and joy. Our mission is to develop not just football skills but also character, teamwork, and leadership qualities.</p>
+      </section>
 
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <p><a href="gallery.html">View full gallery</a></p>
-    </section>
+      <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-preview">
+          <a href="slide1.jpg" target="_blank" rel="noopener noreferrer">
+            <img src="slide1.jpg" alt="Training session" loading="lazy">
+          </a>
+          <a href="slide2.jpg" target="_blank" rel="noopener noreferrer">
+            <img src="slide2.jpg" alt="Match action" loading="lazy">
+          </a>
+          <a href="slide3.jpg" target="_blank" rel="noopener noreferrer">
+            <img src="slide3.jpg" alt="Team celebration" loading="lazy">
+          </a>
+        </div>
+        <a href="gallery.html" class="view-more">View Full Gallery →</a>
+      </section>
 
-    <section id="players">
-      <h2>Player Profiles</h2>
-      <p>Coming soon — player information, stats and highlights.</p>
-    </section>
+      <section id="players">
+        <h2>Player Profiles</h2>
+        <p>Coming soon — player information, stats and highlights.</p>
+      </section>
 
-    <section id="register">
-      <h2>Join Campeones S.C</h2>
-      <form action="https://formsubmit.co/Campeones.ae@gmail.com" method="POST">
-        <input type="text" name="player_name" placeholder="Player Name" required aria-label="Player Name">
-        <input type="number" name="age" placeholder="Age" required aria-label="Player Age" min="4" max="16">
-        <input type="email" name="parent_email" placeholder="Parent Email" required aria-label="Parent Email">
-        <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
-        <textarea name="notes" placeholder="Additional Notes (optional)" aria-label="Additional Notes"></textarea>
-        <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_next" value="https://campeones.ae/thanks.html">
-        <button type="submit">Submit</button>
-      </form>
-    </section>
+      <section id="register">
+        <h2>Join Campeones S.C</h2>
+        <form action="https://formsubmit.co/Campeones.ae@gmail.com" method="POST">
+          <input type="text" name="player_name" placeholder="Player Name" required aria-label="Player Name">
+          <input type="number" name="age" placeholder="Age" required aria-label="Player Age" min="4" max="16">
+          <input type="email" name="parent_email" placeholder="Parent Email" required aria-label="Parent Email">
+          <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
+          <textarea name="notes" placeholder="Additional Notes (optional)" aria-label="Additional Notes"></textarea>
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_next" value="https://campeones.ae/thanks.html">
+          <button type="submit">Submit</button>
+        </form>
+      </section>
 
-    <section id="location">
-  <h2>Find Us</h2>
-  <div class="google-map">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.5090!2d55.42283!3d25.2304946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d45d455ac11%3A0x91a716cb7d6e294a!2sAl%20Mawakeb%20School%20-%20Al%20Mizhar!5e0!3m2!1sen!2sae!4v1721747750284!5m2!1sen!2sae"
-      width="100%"
-      height="300"
-      style="border:0; border-radius:10px;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Campeones SC Location Map">
-    </iframe>
-  </div>
-</section>
+      <section id="location">
+        <h2>Find Us</h2>
+        <p>Visit us at our training grounds in Al Mawakeb School, Al Mizhar, Dubai.</p>
+        <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" title="Campeones SC Location Map"></iframe>
+        </div>
+      </section>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email: <a href="mailto:info@campeones.ae">info@campeones.ae</a></p>
-      <p>Location: Al Mawakeb school, Al Mizhar, Dubai, Sharjah AlJoker playground</p>
-    </section>
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:info@campeones.ae">info@campeones.ae</a></p>
+        <p>Location: Al Mawakeb school, Al Mizhar, Dubai, Sharjah AlJoker playground</p>
+      </section>
+    </main>
 
     <footer>
       <p>© 2025 Campeones S.C. All rights reserved.</p>
@@ -431,7 +483,7 @@
     <div class="sidebar" id="sidebar">
       <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">✕</button>
       <a href="#about">About Us</a>
-      <a href="#gallery">Gallery</a>
+      <a href="gallery.html">Gallery</a>
       <a href="#players">Players</a>
       <a href="#register">Join Us</a>
       <a href="#location">Find Us</a>
@@ -443,7 +495,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Check if splash screen should be shown
       if (!sessionStorage.getItem('visited')) {
         setTimeout(() => {
           const splash = document.getElementById('splash-screen');
@@ -459,9 +510,6 @@
         document.getElementById('splash-screen').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
       }
-
-      // Load slider images from JSON
-      loadSliderImages();
     });
 
     function toggleMenu() {
@@ -472,7 +520,6 @@
       overlay.classList.toggle('show');
       document.body.style.overflow = isOpen ? 'hidden' : 'auto';
       
-      // Focus management for accessibility
       if (isOpen) {
         document.querySelector('.sidebar a').focus();
       } else {
@@ -480,57 +527,6 @@
       }
     }
 
-    function loadSliderImages() {
-      fetch('data.json')
-        .then(res => {
-          if (!res.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return res.json();
-        })
-        .then(data => {
-          const container = document.getElementById('slider-container');
-          if (!container) return;
-          
-          container.innerHTML = '';
-          data.forEach(slide => {
-            const img = document.createElement('img');
-            img.src = slide.image;
-            img.alt = slide.alt || 'Campeones football image';
-            img.loading = 'lazy';
-            container.appendChild(img);
-          });
-        })
-        .catch(err => {
-          console.error('Slider load error:', err);
-          // Fallback to default images if JSON fails
-          const container = document.getElementById('slider-container');
-          if (container && container.children.length === 0) {
-            container.innerHTML = `
-              <img src="slide1.jpg" alt="Youth football training" loading="lazy">
-              <img src="slide2.jpg" alt="Team match action" loading="lazy">
-              <img src="slide3.jpg" alt="Victory celebration" loading="lazy">
-            `;
-          }
-        });
-    }
-
-    // Close sidebar when clicking on overlay
     document.getElementById('overlay').addEventListener('click', toggleMenu);
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', function (e) {
-        if (this.getAttribute('href').startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-        toggleMenu();
-      });
-    });
-  </script>
-</body>
-</html>
+    document.querySelector
