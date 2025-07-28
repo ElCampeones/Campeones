@@ -1,116 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery - Campeones FT</title>
+  <meta charset="UTF-8">
+  <title>Campeones Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
       background: #f9f9f9;
       color: #333;
+      text-align: center;
     }
+
     header {
-      background-color: #800020;
+      background: #800020;
       color: white;
-      padding: 1.5rem;
-      text-align: center;
+      padding: 1rem;
     }
-    h2 {
-      text-align: center;
-      margin-top: 2rem;
-    }
+
     .gallery {
       display: flex;
-      justify-content: center;
-      gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
       padding: 2rem;
     }
+
     .gallery img {
       width: 300px;
-      height: 200px;
-      object-fit: cover;
+      max-width: 100%;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .gallery img:hover {
       transform: scale(1.05);
     }
-    .gallery img.error {
-      border: 2px dashed #ff0000;
-      background-color: #ffecec;
-    }
-    footer {
-      background-color: #222;
-      color: #aaa;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
+
+    .back {
       margin-top: 2rem;
-    }
-    a {
-      color: #f7c200;
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: #800020;
+      color: white;
+      border-radius: 5px;
       text-decoration: none;
-      font-weight: bold;
-    }
-    .loading {
-      text-align: center;
-      padding: 20px;
-      color: #800020;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Campeones Gallery</h1>
-    <p><a href="index.html">Back to Home</a></p>
   </header>
 
-  <h2>Training Highlights</h2>
-  
   <div class="gallery">
-    <!-- الصور الأساسية -->
-    <img src="IMG-20250525-WA0127.jpg" alt="Training Session 1" onerror="handleImageError(this)">
-    <img src="IMG-20250525-WA0128.jpg" alt="Training Session 2" onerror="handleImageError(this)">
-    <img src="IMG-20250525-WA0129.jpg" alt="Training Session 3" onerror="handleImageError(this)">
-    <img src="IMG-20250525-WA0132.jpg" alt="Training Session 4" onerror="handleImageError(this)">
-    <img src="IMG-20250525-WA0141.jpg" alt="Training Session 5" onerror="handleImageError(this)">
-    <img src="IMG-20250601-WA0073.jpg" alt="Training Session 6" onerror="handleImageError(this)">
-    <img src="IMG-20250604-WA0025.jpg" alt="Training Session 7" onerror="handleImageError(this)">
+    <a href="slide1.jpg" target="_blank"><img src="slide1.jpg" alt="Image 1"></a>
+    <a href="slide2.jpg" target="_blank"><img src="slide2.jpg" alt="Image 2"></a>
+    <a href="slide3.jpg" target="_blank"><img src="slide3.jpg" alt="Image 3"></a>
+    <!-- أضف المزيد إذا احتجت -->
   </div>
 
-  <footer>
-    <p>© 2025 Campeones Football Training | All Rights Reserved</p>
-  </footer>
-
-  <script>
-    // دالة للتعامل مع أخطاء تحميل الصور
-    function handleImageError(img) {
-      img.classList.add('error');
-      img.alt = 'Failed to load image: ' + img.alt;
-      console.error('Image failed to load:', img.src);
-      
-      // يمكنك إضافة صورة بديلة هنا إذا أردت
-      // img.src = 'placeholder.jpg';
-    }
-
-    // إظهار رسالة تحميل أثناء انتظار الصور
-    document.addEventListener('DOMContentLoaded', function() {
-      const gallery = document.querySelector('.gallery');
-      const loadingDiv = document.createElement('div');
-      loadingDiv.className = 'loading';
-      loadingDiv.textContent = 'Loading images...';
-      gallery.appendChild(loadingDiv);
-      
-      // إخفاء رسالة التحميل بعد تحميل الصور
-      window.addEventListener('load', function() {
-        loadingDiv.style.display = 'none';
-      });
-    });
-  </script>
+  <a class="back" href="index.html">← Back to Home</a>
 </body>
 </html>
