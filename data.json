@@ -1,6 +1,22 @@
 [
-  { "image": "main/slide1.jpg", "alt": "Training Session 1" },
-  { "image": "main/slide2.jpg", "alt": "Team Huddle" },
-  { "image": "main/slide3.jpg", "alt": "Match Day" },
-  { "image": "main/slide4.jpg", "alt": "Victory Celebration" }
+  {
+    "image": "slide1.jpg",
+    "alt": "Training moment"
+  },
+  {
+    "image": "slide2.jpg",
+    "alt": "Players in action"
+  },
+  {
+    "image": "slide3.jpg",
+    "alt": "Match focus"
+  },
+  {
+    "image": "slide4.jpg",
+    "alt": "Goal celebration"
+  },
+  {
+    "image": "IMG-20250525-WA0127.jpg",
+    "alt": "Team photo after training"
+  }
 ]
