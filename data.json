@@ -1,14 +1,6 @@
 [
-  {
-    "image": "slide1.jpg",
-    "title": "A day to remember"
-  },
-  {
-    "image": "slide2.jpg",
-    "title": "our center-back Wajdy - U14"
-  },
-  {
-    "image": "slide3.jpg",
-    "title": "Friendly Match Highlights"
-  }
+  { "image": "main/slide1.jpg", "alt": "Training Day" },
+  { "image": "main/slide2.jpg", "alt": "Match Time" },
+  { "image": "main/slide3.jpg", "alt": "Celebration" },
+  { "image": "main/slide4.jpg", "alt": "Team Photo" }
 ]
