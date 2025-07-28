@@ -3,15 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Campeones SC</title>
+  <title>Campeones SC - Football Academy for Boys 4-16</title>
   <meta name="description" content="Campeones SC - Football in its purest form. Training boys ages 4-16 with passion, discipline, and joy.">
   <style>
+    :root {
+      --primary-color: #800020;
+      --secondary-color: #f7c200;
+      --text-color: #333;
+      --light-bg: #f9f9f9;
+      --dark-bg: #222;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      color: #333;
+      background: var(--light-bg);
+      color: var(--text-color);
       overflow-x: hidden;
       line-height: 1.6;
     }
@@ -22,7 +35,7 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background-color: #800020;
+      background-color: var(--primary-color);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -34,23 +47,24 @@
     .splash-logo {
       width: 150px;
       height: 150px;
-      background: white;
+      background: var(--white);
       border-radius: 50%;
       padding: 10px;
       margin-bottom: 30px;
       animation: pulse 2s infinite;
-      box-shadow: 0 0 0 3px white;
+      box-shadow: 0 0 0 3px var(--white);
       object-fit: contain;
     }
 
     .splash-text {
-      color: white;
-      font-size: 2.5rem;
+      color: var(--white);
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
       font-weight: bold;
       text-align: center;
       opacity: 0;
       animation: fadeIn 1s ease-in 1s forwards;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      padding: 0 1rem;
     }
 
     #main-content {
@@ -59,13 +73,24 @@
       animation: fadeInContent 0.5s ease-in forwards;
     }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInContent { to { opacity: 1; } }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: translateY(20px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    @keyframes fadeInContent { 
+      to { opacity: 1; } 
+    }
+    
+    @keyframes pulse { 
+      0% { transform: scale(1); } 
+      50% { transform: scale(1.05); } 
+      100% { transform: scale(1); } 
+    }
 
     header {
-      background-color: #800020;
-      color: white;
+      background-color: var(--primary-color);
+      color: var(--white);
       padding: 1.5rem 1rem;
       text-align: center;
       position: relative;
@@ -75,17 +100,25 @@
     header img {
       width: 120px;
       height: 120px;
-      background: white;
+      background: var(--white);
       border-radius: 50%;
       padding: 5px;
       margin: 0 auto 15px;
       display: block;
-      box-shadow: 0 0 0 3px white;
+      box-shadow: 0 0 0 3px var(--white);
       object-fit: contain;
     }
 
-    header h1 { margin: 0.5rem 0; font-size: 2.2rem; }
-    header p { margin: 0; font-style: italic; font-size: 1.1rem; }
+    header h1 { 
+      margin: 0.5rem 0; 
+      font-size: clamp(1.8rem, 5vw, 2.2rem); 
+    }
+    
+    header p { 
+      margin: 0; 
+      font-style: italic; 
+      font-size: clamp(1rem, 3vw, 1.1rem); 
+    }
 
     .menu-toggle {
       position: absolute;
@@ -93,10 +126,11 @@
       left: 1rem;
       background: none;
       border: none;
-      color: white;
+      color: var(--white);
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 1002;
+      padding: 0.5rem;
     }
 
     .sidebar {
@@ -105,8 +139,8 @@
       left: -250px;
       height: 100%;
       width: 250px;
-      background-color: #800020;
-      color: white;
+      background-color: var(--primary-color);
+      color: var(--white);
       padding: 2rem 1rem;
       transition: left 0.3s ease;
       z-index: 1003;
@@ -121,20 +155,28 @@
     .sidebar a {
       display: block;
       margin: 1rem 0;
-      color: white;
+      color: var(--white);
       text-decoration: none;
       font-weight: bold;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255,255,255,0.1);
     }
 
     .close-btn {
       background: none;
       border: none;
-      color: white;
+      color: var(--white);
       font-size: 1.5rem;
       position: absolute;
       top: 1rem;
       right: 1rem;
       cursor: pointer;
+      padding: 0.5rem;
     }
 
     .overlay {
@@ -190,14 +232,13 @@
     }
 
     .hero {
-      background: none;
-      color: #800020;
+      color: var(--primary-color);
       padding: 3rem 1rem;
       text-align: center;
     }
 
     .hero h2 {
-      font-size: 2.2rem;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
       font-weight: bold;
       margin: 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
@@ -211,17 +252,17 @@
     }
 
     section h2 {
-      color: #800020;
-      font-size: 1.8rem;
+      color: var(--primary-color);
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
       margin-bottom: 1.5rem;
     }
 
     section p {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 3vw, 1.1rem);
     }
 
     footer {
-      background-color: #222;
+      background-color: var(--dark-bg);
       color: #aaa;
       text-align: center;
       padding: 1.5rem;
@@ -234,7 +275,7 @@
     }
 
     a {
-      color: #f7c200;
+      color: var(--secondary-color);
       text-decoration: none;
       transition: color 0.3s ease;
     }
@@ -252,31 +293,56 @@
       max-width: 400px;
       border-radius: 5px;
       border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: inherit;
     }
 
     button {
-      background-color: #800020;
-      color: white;
+      background-color: var(--primary-color);
+      color: var(--white);
       padding: 0.75rem 2rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
       margin-top: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #600018;
+      transform: translateY(-2px);
     }
 
     @media (max-width: 768px) {
       .slider { height: 300px; }
-      .hero h2 { font-size: 1.8rem; }
-      .splash-text { font-size: 2rem; }
     }
 
     @media (max-width: 480px) {
       .slider { height: 250px; }
-      header h1 { font-size: 1.8rem; }
-      .hero h2 { font-size: 1.5rem; }
-      .splash-text { font-size: 1.5rem; }
       .splash-logo, header img { width: 100px; height: 100px; }
+    }
+
+    /* Accessibility improvements */
+    button:focus, 
+    input:focus, 
+    select:focus, 
+    textarea:focus,
+    a:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 2px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
     }
   </style>
 </head>
@@ -288,7 +354,7 @@
 
   <div id="main-content">
     <header>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</button>
       <img src="logo2.png" alt="Campeones Logo" />
       <h1>Campeones S.C</h1>
       <p>We rise thinkers, we shape decision-makers</p>
@@ -300,9 +366,9 @@
 
     <div class="slider">
       <div class="slides" id="slider-container">
-        <img src="slide1.jpg" alt="Training">
-        <img src="slide2.jpg" alt="Match">
-        <img src="slide3.jpg" alt="Celebration">
+        <img src="slide1.jpg" alt="Youth football training session">
+        <img src="slide2.jpg" alt="Campeones team match action">
+        <img src="slide3.jpg" alt="Team celebration after victory">
       </div>
     </div>
 
@@ -324,11 +390,11 @@
     <section id="register">
       <h2>Join Campeones S.C</h2>
       <form action="https://formsubmit.co/Campeones.ae@gmail.com" method="POST">
-        <input type="text" name="player_name" placeholder="Player Name" required>
-        <input type="number" name="age" placeholder="Age" required>
-        <input type="email" name="parent_email" placeholder="Parent Email" required>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
-        <textarea name="notes" placeholder="Additional Notes (optional)"></textarea>
+        <input type="text" name="player_name" placeholder="Player Name" required aria-label="Player Name">
+        <input type="number" name="age" placeholder="Age" required aria-label="Player Age" min="4" max="16">
+        <input type="email" name="parent_email" placeholder="Parent Email" required aria-label="Parent Email">
+        <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
+        <textarea name="notes" placeholder="Additional Notes (optional)" aria-label="Additional Notes"></textarea>
         <input type="hidden" name="_captcha" value="true">
         <input type="hidden" name="_next" value="https://campeones.ae/thanks.html">
         <button type="submit">Submit</button>
@@ -339,13 +405,13 @@
       <h2>Find Us</h2>
       <p>Visit us at our training grounds in Al Mawakeb School, Al Mizhar, Dubai.</p>
       <div style="max-width:100%; overflow:hidden; margin-top: 1rem;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" title="Campeones SC Location Map"></iframe>
       </div>
     </section>
 
     <section id="contact">
       <h2>Contact Us</h2>
-      <p>Email: info@campeones.ae</p>
+      <p>Email: <a href="mailto:info@campeones.ae">info@campeones.ae</a></p>
       <p>Location: Al Mawakeb school, Al Mizhar, Dubai, Sharjah AlJoker playground</p>
     </section>
 
@@ -355,7 +421,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-      <button class="close-btn" onclick="toggleMenu()">✕</button>
+      <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">✕</button>
       <a href="#about">About Us</a>
       <a href="#gallery">Gallery</a>
       <a href="#players">Players</a>
@@ -369,57 +435,94 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Check if splash screen should be shown
       if (!sessionStorage.getItem('visited')) {
         setTimeout(() => {
-          document.getElementById('splash-screen').style.opacity = '0';
-          setTimeout(() => {
-            document.getElementById('splash-screen').style.display = 'none';
+          const splash = document.getElementById('splash-screen');
+          splash.style.opacity = '0';
+          splash.addEventListener('transitionend', () => {
+            splash.style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
             document.body.style.overflow = 'auto';
-          }, 500);
+          }, { once: true });
         }, 4000);
         sessionStorage.setItem('visited', 'true');
       } else {
         document.getElementById('splash-screen').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
       }
+
+      // Load slider images from JSON
+      loadSliderImages();
     });
 
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('overlay');
-      sidebar.classList.toggle('show');
+      const isOpen = sidebar.classList.toggle('show');
+      
       overlay.classList.toggle('show');
-      document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : 'auto';
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+      
+      // Focus management for accessibility
+      if (isOpen) {
+        document.querySelector('.sidebar a').focus();
+      } else {
+        document.querySelector('.menu-toggle').focus();
+      }
     }
 
+    function loadSliderImages() {
+      fetch('data.json')
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return res.json();
+        })
+        .then(data => {
+          const container = document.getElementById('slider-container');
+          if (!container) return;
+          
+          container.innerHTML = '';
+          data.forEach(slide => {
+            const img = document.createElement('img');
+            img.src = slide.image;
+            img.alt = slide.alt || 'Campeones football image';
+            img.loading = 'lazy';
+            container.appendChild(img);
+          });
+        })
+        .catch(err => {
+          console.error('Slider load error:', err);
+          // Fallback to default images if JSON fails
+          const container = document.getElementById('slider-container');
+          if (container && container.children.length === 0) {
+            container.innerHTML = `
+              <img src="slide1.jpg" alt="Youth football training" loading="lazy">
+              <img src="slide2.jpg" alt="Team match action" loading="lazy">
+              <img src="slide3.jpg" alt="Victory celebration" loading="lazy">
+            `;
+          }
+        });
+    }
+
+    // Close sidebar when clicking on overlay
+    document.getElementById('overlay').addEventListener('click', toggleMenu);
+
+    // Smooth scrolling for anchor links
     document.querySelectorAll('.sidebar a').forEach(link => {
       link.addEventListener('click', function (e) {
         if (this.getAttribute('href').startsWith('#')) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
-          target.scrollIntoView({ behavior: 'smooth' });
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
         }
         toggleMenu();
       });
     });
-
-    document.getElementById('overlay').addEventListener('click', toggleMenu);
-
-    // Load slider images from JSON
-    fetch('data.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('slider-container');
-        container.innerHTML = '';
-        data.forEach(slide => {
-          const img = document.createElement('img');
-          img.src = slide.image;
-          img.alt = slide.title || 'Campeones Image';
-          container.appendChild(img);
-        });
-      })
-      .catch(err => console.error('Slider load error:', err));
   </script>
 </body>
 </html>
