@@ -3,22 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Campeones SC - Football Academy</title>
-  <meta name="description" content="Training boys ages 4–16 with passion and discipline.">
-  <link rel="preload" href="data.json" as="fetch" crossorigin>
+  <title>Campeones SC - Football Academy for Boys 4-16</title>
+  <meta name="description" content="Campeones SC - Football in its purest form. Training boys ages 4-16 with passion, discipline, and joy.">
   <style>
     :root {
       --primary-color: #800020;
-      --white: #fff;
-      --light-bg: #f9f9f9;
+      --secondary-color: #f7c200;
       --text-color: #333;
+      --light-bg: #f9f9f9;
+      --dark-bg: #222;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
       background: var(--light-bg);
       color: var(--text-color);
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
     #splash-screen {
@@ -32,63 +40,309 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      z-index: 9999;
       transition: opacity 0.5s ease;
     }
 
     .splash-logo {
       width: 150px;
       height: 150px;
-      object-fit: contain;
       background: var(--white);
       border-radius: 50%;
       padding: 10px;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 0 3px var(--white);
+      object-fit: contain;
     }
 
     .splash-text {
       color: var(--white);
-      margin-top: 1rem;
-      font-size: 1.5rem;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
       font-weight: bold;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease-in 1s forwards;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      padding: 0 1rem;
     }
 
     #main-content {
       display: none;
+      opacity: 0;
+      animation: fadeInContent 0.5s ease-in forwards;
     }
 
-    .slider {
-      width: 100%;
-      max-width: 900px;
-      margin: 2rem auto;
-      overflow: hidden;
-      border-radius: 12px;
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: translateY(20px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    @keyframes fadeInContent { 
+      to { opacity: 1; } 
+    }
+    
+    @keyframes pulse { 
+      0% { transform: scale(1); } 
+      50% { transform: scale(1.05); } 
+      100% { transform: scale(1); } 
     }
 
-    .slider img {
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      background: var(--white);
+      border-radius: 50%;
+      padding: 5px;
+      margin: 0 auto 15px;
+      display: block;
+      box-shadow: 0 0 0 3px var(--white);
+      object-fit: contain;
+    }
+
+    header h1 { 
+      margin: 0.5rem 0; 
+      font-size: clamp(1.8rem, 5vw, 2.2rem); 
+    }
+    
+    header p { 
+      margin: 0; 
+      font-style: italic; 
+      font-size: clamp(1rem, 3vw, 1.1rem); 
+    }
+
+    .menu-toggle {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1002;
+      padding: 0.5rem;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 250px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 2rem 1rem;
+      transition: left 0.3s ease;
+      z-index: 1003;
+      visibility: hidden;
+    }
+
+    .sidebar.show {
+      left: 0;
+      visibility: visible;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 1rem 0;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
       width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
-      object-fit: cover;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 1001;
+    }
+
+    .overlay.show {
       display: block;
     }
 
-    #gallery {
-      padding: 1rem;
+    .slider {
+      width: 90%;
+      max-width: 900px;
+      height: 400px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slide 12s infinite;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .slides img:hover {
+      transform: scale(1.02);
+    }
+
+    @keyframes slide {
+      0% { margin-left: 0%; }
+      33% { margin-left: -100%; }
+      66% { margin-left: -200%; }
+      100% { margin-left: 0%; }
+    }
+
+    .hero {
+      color: var(--primary-color);
+      padding: 3rem 1rem;
       text-align: center;
     }
 
-    #gallery-container img {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    .hero h2 {
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: bold;
+      margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
 
-    h2 {
+    section {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    section h2 {
       color: var(--primary-color);
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
+      margin-bottom: 1.5rem;
+    }
+
+    section p {
+      font-size: clamp(1rem, 3vw, 1.1rem);
+    }
+
+    footer {
+      background-color: var(--dark-bg);
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
+
+    input, select, textarea {
+      display: block;
+      margin: 0.5rem auto;
+      padding: 0.75rem;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #600018;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .slider { height: 300px; }
+    }
+
+    @media (max-width: 480px) {
+      .slider { height: 250px; }
+      .splash-logo, header img { width: 100px; height: 100px; }
+    }
+
+    /* Accessibility improvements */
+    button:focus, 
+    input:focus, 
+    select:focus, 
+    textarea:focus,
+    a:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 2px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
     }
   </style>
 </head>
@@ -99,61 +353,184 @@
   </div>
 
   <div id="main-content">
-    <div class="slider" id="slider-container">
-      <!-- Images will load from JSON -->
+    <header>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</button>
+      <img src="logo2.png" alt="Campeones Logo" />
+      <h1>Campeones S.C</h1>
+      <p>We rise thinkers, we shape decision-makers</p>
+    </header>
+
+    <section class="hero">
+      <h2>Everyone's limit is just our starting line.</h2>
+    </section>
+
+    <div class="slider">
+      <div class="slides" id="slider-container">
+        <img src="slide1.jpg" alt="Youth football training session">
+        <img src="slide2.jpg" alt="Campeones team match action">
+        <img src="slide3.jpg" alt="Team celebration after victory">
+      </div>
     </div>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <p>Campeones S.C is dedicated to training boys ages 4–16 with passion, discipline, and joy. Our mission is to develop not just football skills but also character, teamwork, and leadership qualities.</p>
+    </section>
 
     <section id="gallery">
       <h2>Gallery</h2>
-      <div id="gallery-container">
-        <!-- One image will be loaded here from JSON -->
-      </div>
+      <p><a href="gallery.html">View full gallery</a></p>
     </section>
+
+    <section id="players">
+      <h2>Player Profiles</h2>
+      <p>Coming soon — player information, stats and highlights.</p>
+    </section>
+
+    <section id="register">
+      <h2>Join Campeones S.C</h2>
+      <form action="https://formsubmit.co/Campeones.ae@gmail.com" method="POST">
+        <input type="text" name="player_name" placeholder="Player Name" required aria-label="Player Name">
+        <input type="number" name="age" placeholder="Age" required aria-label="Player Age" min="4" max="16">
+        <input type="email" name="parent_email" placeholder="Parent Email" required aria-label="Parent Email">
+        <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
+        <textarea name="notes" placeholder="Additional Notes (optional)" aria-label="Additional Notes"></textarea>
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://campeones.ae/thanks.html">
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section id="location">
+  <h2>Find Us</h2>
+  <div class="google-map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.5090!2d55.42283!3d25.2304946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d45d455ac11%3A0x91a716cb7d6e294a!2sAl%20Mawakeb%20School%20-%20Al%20Mizhar!5e0!3m2!1sen!2sae!4v1721747750284!5m2!1sen!2sae"
+      width="100%"
+      height="300"
+      style="border:0; border-radius:10px;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Campeones SC Location Map">
+    </iframe>
+  </div>
+</section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:info@campeones.ae">info@campeones.ae</a></p>
+      <p>Location: Al Mawakeb school, Al Mizhar, Dubai, Sharjah AlJoker playground</p>
+    </section>
+
+    <footer>
+      <p>© 2025 Campeones S.C. All rights reserved.</p>
+    </footer>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">✕</button>
+      <a href="#about">About Us</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#players">Players</a>
+      <a href="#register">Join Us</a>
+      <a href="#location">Find Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const splash = document.getElementById('splash-screen');
-      const mainContent = document.getElementById('main-content');
-
+      // Check if splash screen should be shown
       if (!sessionStorage.getItem('visited')) {
         setTimeout(() => {
+          const splash = document.getElementById('splash-screen');
           splash.style.opacity = '0';
           splash.addEventListener('transitionend', () => {
             splash.style.display = 'none';
-            mainContent.style.display = 'block';
+            document.getElementById('main-content').style.display = 'block';
+            document.body.style.overflow = 'auto';
           }, { once: true });
-        }, 2500);
+        }, 4000);
         sessionStorage.setItem('visited', 'true');
       } else {
-        splash.style.display = 'none';
-        mainContent.style.display = 'block';
+        document.getElementById('splash-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
       }
 
-      loadContent().catch(console.error);
+      // Load slider images from JSON
+      loadSliderImages();
     });
 
-    async function loadContent() {
-      const response = await fetch('data.json');
-      if (!response.ok) throw new Error('Failed to load data.json');
-      const data = await response.json();
-
-      // Load last 3 images into slider
-      const sliderContainer = document.getElementById('slider-container');
-      const sliderImages = data.slice(0, 3);
-      sliderContainer.innerHTML = sliderImages.map(slide => `
-        <img src="${slide.image}" alt="${slide.alt}" loading="lazy" />
-      `).join('');
-
-      // Load last image into gallery
-      const galleryContainer = document.getElementById('gallery-container');
-      const galleryImage = data[3];
-      if (galleryImage) {
-        galleryContainer.innerHTML = `
-          <img src="${galleryImage.image}" alt="${galleryImage.alt}" loading="lazy" />
-        `;
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const isOpen = sidebar.classList.toggle('show');
+      
+      overlay.classList.toggle('show');
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+      
+      // Focus management for accessibility
+      if (isOpen) {
+        document.querySelector('.sidebar a').focus();
+      } else {
+        document.querySelector('.menu-toggle').focus();
       }
     }
+
+    function loadSliderImages() {
+      fetch('data.json')
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return res.json();
+        })
+        .then(data => {
+          const container = document.getElementById('slider-container');
+          if (!container) return;
+          
+          container.innerHTML = '';
+          data.forEach(slide => {
+            const img = document.createElement('img');
+            img.src = slide.image;
+            img.alt = slide.alt || 'Campeones football image';
+            img.loading = 'lazy';
+            container.appendChild(img);
+          });
+        })
+        .catch(err => {
+          console.error('Slider load error:', err);
+          // Fallback to default images if JSON fails
+          const container = document.getElementById('slider-container');
+          if (container && container.children.length === 0) {
+            container.innerHTML = `
+              <img src="slide1.jpg" alt="Youth football training" loading="lazy">
+              <img src="slide2.jpg" alt="Team match action" loading="lazy">
+              <img src="slide3.jpg" alt="Victory celebration" loading="lazy">
+            `;
+          }
+        });
+    }
+
+    // Close sidebar when clicking on overlay
+    document.getElementById('overlay').addEventListener('click', toggleMenu);
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+        toggleMenu();
+      });
+    });
   </script>
 </body>
 </html>
