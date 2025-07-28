@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Campeones SC - Photo Gallery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="View our football training sessions, matches and team events">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campeones SC - Football Academy</title>
+  <meta name="description" content="Training boys ages 4–16 with passion and discipline.">
+  <link rel="preload" href="data.json" as="fetch" crossorigin>
   <style>
     :root {
       --primary-color: #800020;
-      --secondary-color: #f7c200;
-      --text-color: #333;
-      --light-bg: #f9f9f9;
       --white: #fff;
+      --light-bg: #f9f9f9;
+      --text-color: #333;
     }
 
     body {
@@ -19,291 +19,141 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--light-bg);
       color: var(--text-color);
-      line-height: 1.6;
     }
 
-    header {
-      background: var(--primary-color);
-      color: var(--white);
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      position: relative;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-
-    .gallery-container {
-      position: relative;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 1rem 0;
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      aspect-ratio: 4/3;
-      cursor: pointer;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.03);
-    }
-
-    /* Lightbox Styles */
-    .lightbox {
-      display: none;
+    #splash-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      height: 100vh;
+      background-color: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       z-index: 1000;
-      align-items: center;
-      justify-content: center;
+      transition: opacity 0.5s ease;
     }
 
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-    }
-
-    .lightbox-img {
-      max-height: 80vh;
-      max-width: 90vw;
-      border-radius: 5px;
-    }
-
-    .lightbox-close,
-    .lightbox-nav {
-      position: absolute;
-      color: var(--white);
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      cursor: pointer;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
+    .splash-logo {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      background: var(--white);
       border-radius: 50%;
+      padding: 10px;
     }
 
-    .lightbox-close {
-      top: 20px;
-      right: 20px;
-    }
-
-    .lightbox-nav {
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox-prev {
-      left: 20px;
-    }
-
-    .lightbox-next {
-      right: 20px;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 2rem auto;
-      padding: 0.8rem 1.5rem;
-      background: var(--primary-color);
+    .splash-text {
       color: var(--white);
-      border-radius: 5px;
-      text-decoration: none;
+      margin-top: 1rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      transition: background 0.3s, transform 0.2s;
     }
 
-    .back-btn:hover {
-      background: #600018;
-      transform: translateY(-2px);
+    #main-content {
+      display: none;
     }
 
-    /* Accessibility */
-    a:focus, button:focus {
-      outline: 2px solid var(--secondary-color);
-      outline-offset: 3px;
+    .slider {
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 12px;
     }
 
-    @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 15px;
-      }
-      
-      .lightbox-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-      }
+    .slider img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
     }
 
-    @media (max-width: 480px) {
-      h1 { font-size: 1.5rem; }
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+    #gallery {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    #gallery-container img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: var(--primary-color);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Campeones SC Gallery</h1>
-  </header>
+  <div id="splash-screen">
+    <img src="logo2.png" alt="Campeones Logo" class="splash-logo" />
+    <div class="splash-text">Football in its purest form</div>
+  </div>
 
-  <main>
-    <div class="gallery-container">
-      <div class="gallery">
-        <div class="gallery-item" data-index="0">
-          <img src="slide1.jpg" alt="Team training session" loading="lazy">
-        </div>
-        <div class="gallery-item" data-index="1">
-          <img src="slide2.jpg" alt="Match action" loading="lazy">
-        </div>
-        <div class="gallery-item" data-index="2">
-          <img src="slide3.jpg" alt="Team celebration" loading="lazy">
-        </div>
-data-index="3">
-          <img src="slide4.jpg" alt="Team celebration 2" loading="lazy">
-        </div>
-        <!-- Add more images as needed -->
-      </div>
+  <div id="main-content">
+    <div class="slider" id="slider-container">
+      <!-- Images will load from JSON -->
     </div>
 
-    <a href="index.html" class="back-btn" aria-label="Return to home page">
-      ← Back to Home
-    </a>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-      <button class="lightbox-close" id="lightboxClose">&times;</button>
-      <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
-      <div class="lightbox-content">
-        <img class="lightbox-img" id="lightboxImage" src="" alt="">
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div id="gallery-container">
+        <!-- One image will be loaded here from JSON -->
       </div>
-      <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
-    </div>
-  </main>
+    </section>
+  </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightboxImage');
-      const lightboxClose = document.getElementById('lightboxClose');
-      const lightboxPrev = document.getElementById('lightboxPrev');
-      const lightboxNext = document.getElementById('lightboxNext');
-      
-      let currentIndex = 0;
-      const images = Array.from(galleryItems).map(item => ({
-        src: item.querySelector('img').src,
-        alt: item.querySelector('img').alt
-      }));
+    document.addEventListener('DOMContentLoaded', function () {
+      const splash = document.getElementById('splash-screen');
+      const mainContent = document.getElementById('main-content');
 
-      // Open lightbox
-      galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-          currentIndex = parseInt(this.getAttribute('data-index'));
-          updateLightboxImage();
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      // Close lightbox
-      lightboxClose.addEventListener('click', function() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      });
-
-      // Navigation
-      lightboxPrev.addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateLightboxImage();
-      });
-
-      lightboxNext.addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % images.length;
-        updateLightboxImage();
-      });
-
-      // Keyboard navigation
-      document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('active')) return;
-        
-        if (e.key === 'Escape') {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        } else if (e.key === 'ArrowLeft') {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          updateLightboxImage();
-        } else if (e.key === 'ArrowRight') {
-          currentIndex = (currentIndex + 1) % images.length;
-          updateLightboxImage();
-        }
-      });
-
-      // Update lightbox image
-      function updateLightboxImage() {
-        lightboxImage.src = images[currentIndex].src;
-        lightboxImage.alt = images[currentIndex].alt;
+      if (!sessionStorage.getItem('visited')) {
+        setTimeout(() => {
+          splash.style.opacity = '0';
+          splash.addEventListener('transitionend', () => {
+            splash.style.display = 'none';
+            mainContent.style.display = 'block';
+          }, { once: true });
+        }, 2500);
+        sessionStorage.setItem('visited', 'true');
+      } else {
+        splash.style.display = 'none';
+        mainContent.style.display = 'block';
       }
 
-      // Close when clicking outside image
-      lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        }
-      });
+      loadContent().catch(console.error);
     });
+
+    async function loadContent() {
+      const response = await fetch('data.json');
+      if (!response.ok) throw new Error('Failed to load data.json');
+      const data = await response.json();
+
+      // Load last 3 images into slider
+      const sliderContainer = document.getElementById('slider-container');
+      const sliderImages = data.slice(0, 3);
+      sliderContainer.innerHTML = sliderImages.map(slide => `
+        <img src="${slide.image}" alt="${slide.alt}" loading="lazy" />
+      `).join('');
+
+      // Load last image into gallery
+      const galleryContainer = document.getElementById('gallery-container');
+      const galleryImage = data[3];
+      if (galleryImage) {
+        galleryContainer.innerHTML = `
+          <img src="${galleryImage.image}" alt="${galleryImage.alt}" loading="lazy" />
+        `;
+      }
+    }
   </script>
 </body>
 </html>
