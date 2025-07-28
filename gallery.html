@@ -28,6 +28,7 @@
       padding: 1.5rem;
       text-align: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: relative;
     }
 
     h1 {
@@ -39,6 +40,10 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 1rem;
+    }
+
+    .gallery-container {
+      position: relative;
     }
 
     .gallery {
@@ -55,6 +60,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       aspect-ratio: 4/3;
+      cursor: pointer;
     }
 
     .gallery-item:hover {
@@ -72,6 +78,71 @@
 
     .gallery-item:hover img {
       transform: scale(1.03);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-img {
+      max-height: 80vh;
+      max-width: 90vw;
+      border-radius: 5px;
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      position: absolute;
+      color: var(--white);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+    }
+
+    .lightbox-close {
+      top: 20px;
+      right: 20px;
+    }
+
+    .lightbox-nav {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
     }
 
     .back-btn {
@@ -94,26 +165,21 @@
     }
 
     /* Accessibility */
-    a:focus {
+    a:focus, button:focus {
       outline: 2px solid var(--secondary-color);
       outline-offset: 3px;
-    }
-
-    /* Loading effect */
-    .gallery-item img {
-      background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-      background-size: 200% 100%;
-      animation: 1.5s shine linear infinite;
-    }
-
-    @keyframes shine {
-      to { background-position-x: -200%; }
     }
 
     @media (max-width: 768px) {
       .gallery {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 15px;
+      }
+      
+      .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
       }
     }
 
@@ -131,29 +197,108 @@
   </header>
 
   <main>
-    <div class="gallery">
-      <a href="slide1.jpg" class="gallery-item" target="_blank" rel="noopener noreferrer">
-        <img src="slide1.jpg" alt="Team training session" loading="lazy">
-      </a>
-      <a href="slide2.jpg" class="gallery-item" target="_blank" rel="noopener noreferrer">
-        <img src="slide2.jpg" alt="Match action" loading="lazy">
-      </a>
-      <a href="slide3.jpg" class="gallery-item" target="_blank" rel="noopener noreferrer">
-        <img src="slide3.jpg" alt="Team celebration" loading="lazy">
-      </a>
-      <!-- Add more images as needed -->
+    <div class="gallery-container">
+      <div class="gallery">
+        <div class="gallery-item" data-index="0">
+          <img src="slide1.jpg" alt="Team training session" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="1">
+          <img src="slide2.jpg" alt="Match action" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="2">
+          <img src="slide3.jpg" alt="Team celebration" loading="lazy">
+        </div>
+        <!-- Add more images as needed -->
+      </div>
     </div>
 
     <a href="index.html" class="back-btn" aria-label="Return to home page">
       ← Back to Home
     </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+      <div class="lightbox-content">
+        <img class="lightbox-img" id="lightboxImage" src="" alt="">
+      </div>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+    </div>
   </main>
 
   <script>
-    // Optional: Add lightbox functionality later
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', (e) => {
-        // Could add lightbox effect here
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const lightboxPrev = document.getElementById('lightboxPrev');
+      const lightboxNext = document.getElementById('lightboxNext');
+      
+      let currentIndex = 0;
+      const images = Array.from(galleryItems).map(item => ({
+        src: item.querySelector('img').src,
+        alt: item.querySelector('img').alt
+      }));
+
+      // Open lightbox
+      galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+          currentIndex = parseInt(this.getAttribute('data-index'));
+          updateLightboxImage();
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      // Close lightbox
+      lightboxClose.addEventListener('click', function() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+
+      // Navigation
+      lightboxPrev.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateLightboxImage();
+      });
+
+      lightboxNext.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % images.length;
+        updateLightboxImage();
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        } else if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          updateLightboxImage();
+        } else if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % images.length;
+          updateLightboxImage();
+        }
+      });
+
+      // Update lightbox image
+      function updateLightboxImage() {
+        lightboxImage.src = images[currentIndex].src;
+        lightboxImage.alt = images[currentIndex].alt;
+      }
+
+      // Close when clicking outside image
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
       });
     });
   </script>
